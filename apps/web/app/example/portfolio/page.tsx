@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageFooter } from "@/components/page-footer";
 
 const projects = [
   {
@@ -126,20 +127,11 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border pb-4 pt-8">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm font-semibold">ITU Hacker</p>
-          <nav className="flex gap-6 text-sm text-muted-foreground">
-            {["GitHub", "LinkedIn", "Dribbble", "Twitter"].map((link) => (
-              <span key={link} className="cursor-pointer hover:text-foreground">
-                {link}
-              </span>
-            ))}
-          </nav>
-          <p className="text-xs text-muted-foreground">&copy; 2026</p>
-        </div>
-      </footer>
+      <PageFooter
+        name="ITU Hacker"
+        links={["GitHub", "LinkedIn", "Dribbble", "Twitter"]}
+        copyright="© 2026"
+      />
     </div>
   );
 }

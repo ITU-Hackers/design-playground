@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageFooter } from "@/components/page-footer";
 
 const features = [
   {
@@ -261,21 +262,11 @@ export default function ExamplePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border pt-8 pb-4">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm font-semibold">ITU-Hackers Inc.</p>
-          <nav className="flex gap-6 text-sm text-muted-foreground">
-            <span className="cursor-pointer hover:text-foreground">About</span>
-            <span className="cursor-pointer hover:text-foreground">Blog</span>
-            <span className="cursor-pointer hover:text-foreground">Careers</span>
-            <span className="cursor-pointer hover:text-foreground">Contact</span>
-          </nav>
-          <p className="text-xs text-muted-foreground">
-            &copy; 2026 ITU-Hackers Inc. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <PageFooter
+        name="ITU-Hackers Inc."
+        links={["About", "Blog", "Careers", "Contact"]}
+        copyright="© 2026 ITU-Hackers Inc. All rights reserved."
+      />
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { PageFooter } from "@/components/page-footer";
 
 const sections = [
   {
@@ -157,13 +158,11 @@ export default function DocsPage() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="rounded-lg border border-border bg-card text-card-foreground p-6">
-          <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <p>ITU Hackers SDK Documentation</p>
-            <p className="font-mono text-xs">Last updated 2026-03-30</p>
-          </div>
-        </footer>
+        <PageFooter
+          variant="card"
+          name="ITU Hackers SDK Documentation"
+          meta="Last updated 2026-03-30"
+        />
       </div>
     </div>
   );
