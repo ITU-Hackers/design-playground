@@ -79,7 +79,7 @@ export default function DocsPage() {
   return (
     <div className="flex gap-10">
       {/* Sidebar */}
-      <aside className="hidden w-48 shrink-0 sm:block">
+      <aside className="hidden w-36 shrink-0 sm:block">
         <div className="sticky top-24 space-y-1">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             On this page
@@ -88,7 +88,7 @@ export default function DocsPage() {
             <a
               key={s.id}
               href={`#${s.id}`}
-              className="block rounded px-2 py-1 font-mono text-xs text-muted-foreground hover:bg-accent hover:text-foreground"
+              className="block rounded py-1 font-mono text-xs text-muted-foreground hover:bg-accent hover:text-foreground"
             >
               {s.title}
             </a>

@@ -20,7 +20,7 @@ const centerNavItems = [
 const exampleItems = [
   { label: "Portfolio", href: "/example/portfolio" },
   { label: "Documentation", href: "/example/docs" },
-  { label: "Landing Page", href: "/example" },
+  { label: "Landing Page", href: "/example/landing" },
 ];
 
 export function Navbar() {
@@ -48,7 +48,7 @@ export function Navbar() {
         <nav className="flex items-center justify-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="lg" className="text-lg" data-active={isExampleActive}>
+              <Button variant="secondary" size="lg" className="text-lg" data-active={isExampleActive}>
                 Examples <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>

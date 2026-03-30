@@ -46,7 +46,7 @@ export default function PortfolioPage() {
           Available for freelance
         </p>
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          Hi, I'm ITU Hackerman.
+          Hi, I'm ITU Hacker.
           <br />
           <span className="text-primary">I build for the web.</span>
         </h1>
@@ -129,7 +129,7 @@ export default function PortfolioPage() {
       {/* Footer */}
       <footer className="border-t border-border pb-4 pt-8">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm font-semibold">ITU Hackerman</p>
+          <p className="text-sm font-semibold">ITU Hacker</p>
           <nav className="flex gap-6 text-sm text-muted-foreground">
             {["GitHub", "LinkedIn", "Dribbble", "Twitter"].map((link) => (
               <span key={link} className="cursor-pointer hover:text-foreground">

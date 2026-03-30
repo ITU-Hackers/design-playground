@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 const sections = [
   {
@@ -29,14 +28,21 @@ export default function Home() {
         </p>
       </section>
 
+      <section className="space-y-4">
+        <h2 className="text-2xl font-semibold tracking-tight">Live Tweaks</h2>
+        <p className="text-muted-foreground">
+          Make design adjustements and see them reflected across the site in real time.
+        </p>
+      </section>
+
       <section className="grid gap-6 sm:grid-cols-3">
         {sections.map((section) => (
           <Link
             key={section.href}
             href={section.href}
-            className="group rounded-lg border border-border p-6 transition-colors hover:border-foreground/20 hover:bg-accent"
+            className="group rounded-lg border border-border bg-card text-card-foreground p-6 transition-colors hover:border-foreground/20 hover:bg-accent"
           >
-            <h2 className="mb-2 text-lg font-semibold tracking-tight group-hover:text-foreground">
+            <h2 className="mb-2 text-lg font-semibold tracking-tight">
               {section.title}
             </h2>
             <p className="text-sm text-muted-foreground">
@@ -47,13 +53,43 @@ export default function Home() {
       </section>
 
       <section className="space-y-4">
+        <h2 className="text-2xl font-semibold tracking-tight">Examples</h2>
         <p className="text-muted-foreground">
-          Once you have tweaked everything to your liking, see it all come
-          together on the example page.
+          See your design choices come together on these example pages.
         </p>
-        <Button asChild>
-          <Link href="/example">View example</Link>
-        </Button>
+      </section>
+
+      <section className="grid gap-6 sm:grid-cols-3">
+        {[
+          {
+            title: "Landing",
+            description: "A marketing landing page with hero, features, and call-to-action sections.",
+            href: "/example/landing",
+          },
+          {
+            title: "Portfolio",
+            description: "A personal portfolio page showcasing projects and work history.",
+            href: "/example/portfolio",
+          },
+          {
+            title: "Docs",
+            description: "A documentation layout with sidebar navigation and content sections.",
+            href: "/example/docs",
+          },
+        ].map((example) => (
+          <Link
+            key={example.href}
+            href={example.href}
+            className="group rounded-lg border border-border bg-card text-card-foreground p-6 transition-colors hover:border-foreground/20 hover:bg-accent"
+          >
+            <h2 className="mb-2 text-lg font-semibold tracking-tight">
+              {example.title}
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              {example.description}
+            </p>
+          </Link>
+        ))}
       </section>
     </div>
   );
