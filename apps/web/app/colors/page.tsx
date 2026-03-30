@@ -6,8 +6,8 @@ import { ColorSwatch } from "@/components/color-swatch";
 import {
   COLOR_TOKENS,
   DEFAULT_COLORS,
-  colorsToToml,
-  tomlToColors,
+  colorsToText,
+  textToColors,
 } from "@/lib/color";
 
 const STORAGE_KEY = "design-playground:colors";
@@ -46,12 +46,12 @@ export default function ColorsPage() {
   }
 
   function handleSave() {
-    const toml = colorsToToml(colors);
+    const toml = colorsToText(colors);
     const blob = new Blob([toml], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "colorscheme.toml";
+    a.download = "colorscheme";
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -62,7 +62,7 @@ export default function ColorsPage() {
     const reader = new FileReader();
     reader.onload = (ev) => {
       const text = ev.target?.result as string;
-      const loaded = tomlToColors(text);
+      const loaded = textToColors(text);
       const next = { ...colors, ...loaded };
       setColors(next);
       for (const [name, value] of Object.entries(loaded)) {
@@ -85,15 +85,15 @@ export default function ColorsPage() {
       </div>
 
       <div className="flex gap-3">
-        <Button onClick={handleSave}>Save .toml</Button>
+        <Button onClick={handleSave}>Save colorscheme</Button>
         <label>
           <Button asChild>
-            <span>Load .toml</span>
+            <span>Load colorscheme</span>
           </Button>
           <input
             ref={fileInputRef}
             type="file"
-            accept=".toml"
+            accept="*"
             className="sr-only"
             onChange={handleLoad}
           />
