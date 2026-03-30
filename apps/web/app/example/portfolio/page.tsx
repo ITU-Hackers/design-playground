@@ -68,7 +68,7 @@ export default function PortfolioPage() {
           {projects.map((project) => (
             <div
               key={project.title}
-              className="group flex flex-col rounded-lg border border-border p-6 transition-colors hover:border-primary/40 hover:bg-accent/30"
+              className="group flex flex-col rounded-lg border border-border bg-card text-card-foreground p-6 transition-colors hover:border-primary/40 hover:bg-accent/30"
             >
               <p className="mb-1 text-xs font-medium uppercase tracking-widest text-primary">
                 {project.category}

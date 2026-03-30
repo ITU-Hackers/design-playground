@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { PageHeader } from "@/components/ui/page-header";
+import { Panel } from "@/components/ui/panel";
 
 const HEADING_FONTS = [
   { name: "Geist Sans", value: "var(--font-geist-sans)", google: false },
@@ -161,14 +163,12 @@ export default function FontsPage() {
 
   return (
     <div className="space-y-10">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Fonts</h1>
-        <blockquote className="text-muted-foreground">
-          Font scales, weights, and text styling conventions.
-        </blockquote>
-      </div>
+      <PageHeader
+        title="Fonts"
+        description="Tweak the font styles for headings, body text, and monospace elements."
+      />
 
-      <section className="space-y-4 rounded-lg border border-border p-6">
+      <Panel className="space-y-4">
         <FontSelect
           id="heading-font"
           label="Heading Font"
@@ -190,21 +190,21 @@ export default function FontsPage() {
           selected={monoFont}
           onChange={setMonoFont}
         />
-      </section>
+      </Panel>
 
       <section className="space-y-6">
         <h2 className="text-xl font-semibold">Headings</h2>
-        <div className="space-y-4 rounded-lg border border-border p-6 font-heading">
+        <Panel className="space-y-4 font-heading">
           <h1 className="text-4xl font-bold tracking-tight">Heading 1</h1>
           <h2 className="text-3xl font-semibold tracking-tight">Heading 2</h2>
           <h3 className="text-2xl font-semibold tracking-tight">Heading 3</h3>
           <h4 className="text-xl font-semibold tracking-tight">Heading 4</h4>
-        </div>
+        </Panel>
       </section>
 
       <section className="space-y-6">
         <h2 className="text-xl font-semibold">Body text</h2>
-        <div className="space-y-4 rounded-lg border border-border p-6">
+        <Panel className="space-y-4">
           <p className="text-lg">
             Large — Used for lead paragraphs and introductions.
           </p>
@@ -214,19 +214,19 @@ export default function FontsPage() {
           <p className="text-sm text-muted-foreground">
             Small / Muted — Used for supporting text and captions.
           </p>
-        </div>
+        </Panel>
       </section>
 
       <section className="space-y-6">
         <h2 className="text-xl font-semibold">Monospace</h2>
-        <div className="space-y-4 rounded-lg border border-border p-6">
+        <Panel className="space-y-4">
           <p className="font-mono text-sm">
             const greeting = &quot;Hello, world!&quot;;
           </p>
           <p className="font-mono text-sm">
             function add(a: number, b: number): number &#123; return a + b; &#125;
           </p>
-        </div>
+        </Panel>
       </section>
     </div>
   );

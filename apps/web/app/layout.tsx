@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Navbar } from "@/components/navbar";
+import { StyleProvider } from "@/components/style-provider";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
+        <StyleProvider />
         <Navbar />
         <main className="mx-auto max-w-5xl px-6 py-10">{children}</main>
       </body>

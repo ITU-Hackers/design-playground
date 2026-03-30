@@ -80,7 +80,7 @@ export default function DocsPage() {
     <div className="flex gap-10">
       {/* Sidebar */}
       <aside className="hidden w-36 shrink-0 sm:block">
-        <div className="sticky top-24 space-y-1">
+        <div className="sticky top-24 space-y-1 rounded-lg bg-background/95 p-3 backdrop-blur">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             On this page
           </p>
@@ -99,7 +99,7 @@ export default function DocsPage() {
       {/* Main content */}
       <div className="min-w-0 flex-1 space-y-16">
         {/* Header */}
-        <div className="space-y-4 rounded-lg border border-border p-6">
+        <div className="space-y-4 rounded-lg border border-border bg-card text-card-foreground p-6">
           <p className="font-mono text-sm text-primary">v2.4.1 — stable</p>
           <h1 className="text-4xl font-bold tracking-tight">ITU-Hackers SDK</h1>
           <p className="text-lg text-muted-foreground">
@@ -129,7 +129,7 @@ export default function DocsPage() {
           <p className="text-muted-foreground">
             Base URL: <code className="font-mono text-sm">https://api.ituhackers.dev</code>
           </p>
-          <div className="overflow-hidden rounded-lg border border-border">
+          <div className="overflow-hidden rounded-lg border border-border bg-card">
             <table className="w-full text-sm">
               <thead className="border-b border-border bg-muted">
                 <tr>
@@ -158,7 +158,7 @@ export default function DocsPage() {
         </section>
 
         {/* Footer */}
-        <footer className="rounded-lg border border-border p-6">
+        <footer className="rounded-lg border border-border bg-card text-card-foreground p-6">
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <p>ITU Hackers SDK Documentation</p>
             <p className="font-mono text-xs">Last updated 2026-03-30</p>

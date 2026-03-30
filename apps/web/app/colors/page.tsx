@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { PageHeader } from "@/components/ui/page-header";
 import { ColorSwatch } from "@/components/color-swatch";
 import {
   COLOR_TOKENS,
@@ -77,12 +78,10 @@ export default function ColorsPage() {
 
   return (
     <div className="space-y-10">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Colors</h1>
-        <blockquote className="text-muted-foreground">
-          Semantic color tokens used throughout the design system. Click a swatch to edit its color.
-        </blockquote>
-      </div>
+      <PageHeader
+        title="Colors"
+        description="Semantic color tokens used throughout the design system. Click a swatch to edit its color."
+      />
 
       <div className="flex gap-3">
         <Button onClick={handleSave}>Save Theme</Button>

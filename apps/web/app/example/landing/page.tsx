@@ -104,7 +104,7 @@ export default function ExamplePage() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="rounded-lg border border-border bg-card p-6 text-center"
+            className="rounded-lg border border-border bg-card text-card-foreground p-6 text-center"
           >
             <p className="text-3xl font-bold tracking-tight">{stat.value}</p>
             <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
@@ -126,7 +126,7 @@ export default function ExamplePage() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="rounded-lg border border-border p-6"
+              className="rounded-lg border border-border bg-card text-card-foreground p-6"
             >
               <h3 className="mb-2 text-lg font-semibold">{feature.title}</h3>
               <p className="text-sm text-muted-foreground">
@@ -177,7 +177,7 @@ export default function ExamplePage() {
           {testimonials.map((t) => (
             <blockquote
               key={t.name}
-              className="rounded-lg border border-border p-6"
+              className="rounded-lg border border-border bg-card text-card-foreground p-6"
             >
               <p className="italic text-muted-foreground">
                 &ldquo;{t.quote}&rdquo;
@@ -207,8 +207,8 @@ export default function ExamplePage() {
               key={plan.name}
               className={`flex flex-col rounded-lg border p-6 ${
                 plan.highlighted
-                  ? "border-primary bg-accent"
-                  : "border-border"
+                  ? "border-primary bg-accent text-accent-foreground"
+                  : "border-border bg-card text-card-foreground"
               }`}
             >
               <h3 className="text-lg font-semibold">{plan.name}</h3>
@@ -241,7 +241,7 @@ export default function ExamplePage() {
       </section>
 
       {/* Newsletter / Form */}
-      <section className="rounded-lg border border-border p-8">
+      <section className="rounded-lg border border-border bg-card text-card-foreground p-8">
         <div className="mx-auto max-w-md space-y-4 text-center">
           <h2 className="text-2xl font-bold tracking-tight">Stay updated</h2>
           <p className="text-sm text-muted-foreground">

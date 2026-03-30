@@ -11,7 +11,7 @@ interface ColorSwatchProps {
 
 export function ColorSwatch({ name, variable, hslValue, onChange }: ColorSwatchProps) {
   return (
-    <div className="flex items-center gap-3 rounded-lg border border-border p-3">
+    <div className="flex items-center gap-3 rounded-lg border border-border bg-card text-card-foreground p-3">
       <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-md border border-border">
         <div
           className="absolute inset-0"
