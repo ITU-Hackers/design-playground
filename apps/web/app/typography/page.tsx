@@ -161,9 +161,9 @@ export default function TypographyPage() {
     <div className="space-y-10">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Typography</h1>
-        <p className="text-muted-foreground">
+        <blockquote className="text-muted-foreground">
           Font scales, weights, and text styling conventions.
-        </p>
+        </blockquote>
       </div>
 
       <section className="space-y-4 rounded-lg border border-border p-6">

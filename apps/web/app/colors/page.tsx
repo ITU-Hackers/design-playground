@@ -79,16 +79,16 @@ export default function ColorsPage() {
     <div className="space-y-10">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Colors</h1>
-        <p className="text-muted-foreground">
+        <blockquote className="text-muted-foreground">
           Semantic color tokens used throughout the design system. Click a swatch to edit its color.
-        </p>
+        </blockquote>
       </div>
 
       <div className="flex gap-3">
-        <Button onClick={handleSave}>Save colorscheme</Button>
+        <Button onClick={handleSave}>Save Theme</Button>
         <label>
           <Button asChild>
-            <span>Load colorscheme</span>
+            <span>Load Theme</span>
           </Button>
           <input
             ref={fileInputRef}

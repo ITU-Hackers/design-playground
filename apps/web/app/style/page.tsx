@@ -18,9 +18,9 @@ export default function StylePage() {
     <div className="space-y-10">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold tracking-tight">Style</h1>
-        <p className="text-muted-foreground">
+        <blockquote className="text-muted-foreground">
           Adjust design tokens and see the entire app update in real time.
-        </p>
+        </blockquote>
       </div>
 
       {/* Controls */}
