@@ -23,6 +23,7 @@
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
     --border-width: 1px;
+    --font-heading: var(--font-geist-sans);
   }
 
   .dark {

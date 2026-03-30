@@ -18,9 +18,9 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-14 max-w-5xl items-center px-6">
         <Link href="/" className="mr-8 flex items-center space-x-2">
-          <span className="text-lg font-bold tracking-tight">Design Playground</span>
+          <span className="rounded-md bg-primary px-3 py-1 text-lg font-bold tracking-tight text-primary-foreground">Design Playground</span>
         </Link>
-        <nav className="flex items-center space-x-6 text-sm font-medium">
+        <nav className="flex items-center space-x-6 text-base font-medium">
           {navItems.map((item) => (
             <Link
               key={item.href}
