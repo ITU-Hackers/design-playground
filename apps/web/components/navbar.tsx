@@ -3,21 +3,36 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
 
 const centerNavItems = [
   { label: "Style", href: "/style" },
   { label: "Colors", href: "/colors" },
-  { label: "Typography", href: "/typography" },
+  { label: "Fonts", href: "/fonts" },
+];
+
+const exampleItems = [
+  { label: "Portfolio", href: "/example/portfolio" },
+  { label: "Documentation", href: "/example/docs" },
+  { label: "Landing Page", href: "/example" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
 
   const outlineLink = (href: string, label: string) => (
-    <Button key={href} asChild variant="outline" size="lg" className="text-lg" data-active={pathname === href}>
+    <Button key={href} asChild variant="outline" size="lg" className="text-lg w-18" data-active={pathname === href}>
       <Link href={href}>{label}</Link>
     </Button>
   );
+
+  const isExampleActive = exampleItems.some((item) => pathname === item.href);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -31,7 +46,20 @@ export function Navbar() {
           {centerNavItems.map((item) => outlineLink(item.href, item.label))}
         </div>
         <nav className="flex items-center justify-end">
-          {outlineLink("/example", "Example")}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="lg" className="text-lg" data-active={isExampleActive}>
+                Examples <ChevronDown className="ml-1 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {exampleItems.map((item) => (
+                <DropdownMenuItem key={item.href} asChild>
+                  <Link href={item.href}>{item.label}</Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
       </div>
     </header>

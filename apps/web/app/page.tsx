@@ -13,9 +13,9 @@ const sections = [
     href: "/colors",
   },
   {
-    title: "Typography",
+    title: "Fonts",
     description: "Font scales, weights, and text styling conventions.",
-    href: "/typography",
+    href: "/fonts",
   },
 ];
 

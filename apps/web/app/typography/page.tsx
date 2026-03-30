@@ -31,7 +31,7 @@ const MONO_FONTS = [
   { name: "IBM Plex Mono", value: "IBM Plex Mono", google: true },
 ];
 
-const STORAGE_KEY = "design-playground:typography";
+const STORAGE_KEY = "design-playground:fonts";
 
 function loadGoogleFont(value: string) {
   const id = `google-font-${value.replace(/\s/g, "-")}`;
@@ -78,7 +78,7 @@ function FontSelect({
   );
 }
 
-export default function TypographyPage() {
+export default function FontsPage() {
   const [headingFont, setHeadingFont] = useState(HEADING_FONTS[0]!);
   const [bodyFont, setBodyFont] = useState(BODY_FONTS[0]!);
   const [monoFont, setMonoFont] = useState(MONO_FONTS[0]!);
@@ -160,7 +160,7 @@ export default function TypographyPage() {
   return (
     <div className="space-y-10">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Typography</h1>
+        <h1 className="text-3xl font-bold tracking-tight">Fonts</h1>
         <blockquote className="text-muted-foreground">
           Font scales, weights, and text styling conventions.
         </blockquote>

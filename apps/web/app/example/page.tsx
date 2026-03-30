@@ -30,7 +30,7 @@ const testimonials = [
     quote:
       "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     name: "Jane Cooper",
-    role: "CTO, Acme Corp",
+    role: "CTO, ITU-Hackers Corp",
   },
   {
     quote:
@@ -80,7 +80,7 @@ export default function ExamplePage() {
       {/* Hero */}
       <section className="space-y-6 pt-10 text-center">
         <p className="text-sm font-medium uppercase tracking-widest text-primary">
-          Introducing Acme Platform
+          Introducing ITU-Hackers Platform
         </p>
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
           Build something{" "}
@@ -264,7 +264,7 @@ export default function ExamplePage() {
       {/* Footer */}
       <footer className="border-t border-border pt-8 pb-4">
         <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm font-semibold">Acme Inc.</p>
+          <p className="text-sm font-semibold">ITU-Hackers Inc.</p>
           <nav className="flex gap-6 text-sm text-muted-foreground">
             <span className="cursor-pointer hover:text-foreground">About</span>
             <span className="cursor-pointer hover:text-foreground">Blog</span>
@@ -272,7 +272,7 @@ export default function ExamplePage() {
             <span className="cursor-pointer hover:text-foreground">Contact</span>
           </nav>
           <p className="text-xs text-muted-foreground">
-            &copy; 2026 Acme Inc. All rights reserved.
+            &copy; 2026 ITU-Hackers Inc. All rights reserved.
           </p>
         </div>
       </footer>
