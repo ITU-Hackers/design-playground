@@ -179,8 +179,7 @@ export default function FontsPage() {
         `"${monoFont.value}", monospace`
       );
     } else {
-      const geistMono = getComputedStyle(document.body).getPropertyValue("--font-geist-mono").trim();
-      document.body.style.setProperty("--font-geist-mono", geistMono);
+      document.body.style.removeProperty("--font-geist-mono");
     }
     persist();
   }, [monoFont]);
