@@ -1,24 +1,62 @@
-export const DEFAULT_COLORS: Record<string, string> = {
-  background: "0 0% 100%",
-  foreground: "233 32.9% 31.6%",
-  card: "220 100.0% 97.1%",
-  "card-foreground": "233 32.9% 31.6%",
-  primary: "233 32.9% 31.6%",
-  "primary-foreground": "0 0% 100%",
-  secondary: "220 100.0% 97.1%",
-  "secondary-foreground": "233 32.9% 31.6%",
-  muted: "220 100.0% 97.1%",
-  "muted-foreground": "230 40.5% 29.0%",
-  accent: "220 100.0% 97.1%",
-  "accent-foreground": "233 32.9% 31.6%",
-  destructive: "0 68.4% 61.6%",
-  "destructive-foreground": "0 0% 100%",
-  border: "200 48.6% 85.5%",
-  input: "198 52.6% 92.5%",
-  ring: "233 32.9% 31.6%",
-};
+const DEFAULT_COLORS_LIGHT_HEX = `
+background=#ffffff
+foreground=#363c6b
+card=#f0f5ff
+card-foreground=#363c6b
+primary=#363c6b
+primary-foreground=#ffffff
+secondary=#d7e1ff
+secondary-foreground=#363c6b
+muted=#f0f5ff
+muted-foreground=#5a6aaf
+accent=#f0f5ff
+accent-foreground=#363c6b
+destructive=#e05a5a
+destructive-foreground=#ffffff
+border=#d7e1ff
+input=#f0f5ff
+ring=#363c6b
+`;
 
-export const COLOR_TOKENS = Object.keys(DEFAULT_COLORS);
+const DEFAULT_COLORS_DARK_HEX = `
+background=#191d38
+foreground=#dde4ff
+card=#242951
+card-foreground=#dde4ff
+primary=#dde4ff
+primary-foreground=#191d38
+secondary=#363c6b
+secondary-foreground=#dde4ff
+muted=#242951
+muted-foreground=#8892b5
+accent=#363c6b
+accent-foreground=#dde4ff
+destructive=#e05a5a
+destructive-foreground=#ffffff
+border=#363c6b
+input=#2c3260
+ring=#dde4ff
+`;
+
+export const COLOR_TOKENS = [
+  "background",
+  "foreground",
+  "card",
+  "card-foreground",
+  "primary",
+  "primary-foreground",
+  "secondary",
+  "secondary-foreground",
+  "muted",
+  "muted-foreground",
+  "accent",
+  "accent-foreground",
+  "destructive",
+  "destructive-foreground",
+  "border",
+  "input",
+  "ring",
+];
 
 export function hslStringToHex(hsl: string): string {
   const parts = hsl.trim().split(/\s+/);
@@ -91,9 +129,15 @@ export function textToColors(text: string): Record<string, string> {
     if (eqIdx === -1) continue;
     const key = trimmed.slice(0, eqIdx).trim();
     const val = trimmed.slice(eqIdx + 1).trim();
-    if (key in DEFAULT_COLORS) {
+    if (COLOR_TOKENS.includes(key)) {
       result[key] = val.startsWith("#") ? hexToHslString(val) : val;
     }
   }
   return result;
 }
+
+export const DEFAULT_COLORS_LIGHT = textToColors(DEFAULT_COLORS_LIGHT_HEX);
+export const DEFAULT_COLORS_DARK = textToColors(DEFAULT_COLORS_DARK_HEX);
+
+/** @deprecated Use DEFAULT_COLORS_LIGHT or DEFAULT_COLORS_DARK */
+export const DEFAULT_COLORS = DEFAULT_COLORS_LIGHT;

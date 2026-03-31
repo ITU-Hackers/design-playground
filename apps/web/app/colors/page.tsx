@@ -6,7 +6,8 @@ import { PageHeader } from "@/components/ui/page-header";
 import { ColorSwatch } from "@/components/color-swatch";
 import {
   COLOR_TOKENS,
-  DEFAULT_COLORS,
+  DEFAULT_COLORS_LIGHT,
+  DEFAULT_COLORS_DARK,
   colorsToText,
   textToColors,
 } from "@/lib/color";
@@ -19,7 +20,7 @@ const tokens = COLOR_TOKENS.map((name) => ({
 }));
 
 export default function ColorsPage() {
-  const [colors, setColors] = useState<Record<string, string>>(DEFAULT_COLORS);
+  const [colors, setColors] = useState<Record<string, string>>(DEFAULT_COLORS_LIGHT);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -33,6 +34,13 @@ export default function ColorsPage() {
         }
       } catch {
         // ignore malformed storage
+      }
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const defaults = prefersDark ? DEFAULT_COLORS_DARK : DEFAULT_COLORS_LIGHT;
+      setColors(defaults);
+      for (const [name, value] of Object.entries(defaults)) {
+        document.documentElement.style.setProperty(`--${name}`, value);
       }
     }
   }, []);
@@ -105,7 +113,7 @@ export default function ColorsPage() {
             key={token.name}
             name={token.name}
             variable={token.variable}
-            hslValue={colors[token.name] ?? DEFAULT_COLORS[token.name] ?? ""}
+            hslValue={colors[token.name] ?? DEFAULT_COLORS_LIGHT[token.name] ?? ""}
             onChange={handleColorChange}
           />
         ))}

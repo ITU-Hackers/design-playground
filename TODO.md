@@ -2,6 +2,7 @@
 - Make background preset options less shit
 - Intelligently render text black or white against background?
 - Improve UI and category consistency?
+- Autodetect light/dark theme preference
 - Shaders?
 
 ## Good ideas for Style Controls

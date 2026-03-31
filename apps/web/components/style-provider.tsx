@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { DEFAULT_COLORS_LIGHT, DEFAULT_COLORS_DARK } from "@/lib/color";
 
 const RADIUS_KEY = "style:radius";
 const BG_KEY = "style:bg";
@@ -35,6 +36,25 @@ function applyBg(bg: string) {
 
 export function StyleProvider() {
   useEffect(() => {
+    // Apply color theme on mount
+    const storedColors = localStorage.getItem("design-playground:colors");
+    if (storedColors) {
+      try {
+        const parsed = JSON.parse(storedColors) as Record<string, string>;
+        for (const [name, value] of Object.entries(parsed)) {
+          document.documentElement.style.setProperty(`--${name}`, value);
+        }
+      } catch {
+        // ignore corrupt localStorage
+      }
+    } else {
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const defaults = prefersDark ? DEFAULT_COLORS_DARK : DEFAULT_COLORS_LIGHT;
+      for (const [name, value] of Object.entries(defaults)) {
+        document.documentElement.style.setProperty(`--${name}`, value);
+      }
+    }
+
     // Apply persisted values on mount
     const radius = localStorage.getItem(RADIUS_KEY);
     if (radius) document.documentElement.style.setProperty("--radius", `${radius}rem`);
