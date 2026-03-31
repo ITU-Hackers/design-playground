@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PageHeader } from "@/components/ui/page-header";
 import { Panel } from "@/components/ui/panel";
+import { ChevronDown } from "lucide-react";
 
 const HEADING_FONTS = [
   { name: "Geist Sans", value: "var(--font-geist-sans)", google: false },
@@ -48,36 +49,63 @@ function loadGoogleFont(value: string) {
   }
 }
 
+function fontFamilyStyle(font: { value: string; google: boolean }): string {
+  return font.google ? `"${font.value}", sans-serif` : font.value;
+}
+
 function FontSelect({
-  id,
   label,
   fonts,
   selected,
   onChange,
 }: {
-  id: string;
   label: string;
   fonts: typeof HEADING_FONTS;
   selected: (typeof HEADING_FONTS)[number];
   onChange: (font: (typeof HEADING_FONTS)[number]) => void;
 }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
   return (
     <div className="flex items-center justify-between">
-      <label htmlFor={id} className="text-sm font-medium">
-        {label}
-      </label>
-      <select
-        id={id}
-        value={selected.name}
-        onChange={(e) => onChange(fonts.find((f) => f.name === e.target.value)!)}
-        className="w-52 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-      >
-        {fonts.map((font) => (
-          <option key={font.name} value={font.name}>
-            {font.name}
-          </option>
-        ))}
-      </select>
+      <span className="text-sm font-medium">{label}</span>
+      <div ref={ref} className="relative w-52">
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="flex w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          style={{ fontFamily: fontFamilyStyle(selected) }}
+        >
+          {selected.name}
+          <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </button>
+        {open && (
+          <div className="absolute z-50 mt-1 w-full rounded-md border border-input bg-background shadow-md">
+            {fonts.map((font) => (
+              <button
+                key={font.name}
+                type="button"
+                onClick={() => { onChange(font); setOpen(false); }}
+                className="flex w-full items-center px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
+                style={{ fontFamily: fontFamilyStyle(font) }}
+              >
+                {font.name}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -86,6 +114,13 @@ export default function FontsPage() {
   const [headingFont, setHeadingFont] = useState(HEADING_FONTS[0]!);
   const [bodyFont, setBodyFont] = useState(BODY_FONTS[0]!);
   const [monoFont, setMonoFont] = useState(MONO_FONTS[0]!);
+
+  // Pre-load all Google fonts for dropdown previews
+  useEffect(() => {
+    [...HEADING_FONTS, ...BODY_FONTS, ...MONO_FONTS]
+      .filter((f) => f.google)
+      .forEach((f) => loadGoogleFont(f.value));
+  }, []);
 
   // Load persisted font selections
   useEffect(() => {
@@ -170,21 +205,18 @@ export default function FontsPage() {
 
       <Panel className="space-y-4">
         <FontSelect
-          id="heading-font"
           label="Heading Font"
           fonts={HEADING_FONTS}
           selected={headingFont}
           onChange={setHeadingFont}
         />
         <FontSelect
-          id="body-font"
           label="Body Font"
           fonts={BODY_FONTS}
           selected={bodyFont}
           onChange={setBodyFont}
         />
         <FontSelect
-          id="mono-font"
           label="Monospace Font"
           fonts={MONO_FONTS}
           selected={monoFont}
