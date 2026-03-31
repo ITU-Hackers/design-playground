@@ -1,3 +1,4 @@
+import { PageFooter } from "@/components/page-footer";
 import Link from "next/link";
 
 const sections = [
@@ -22,14 +23,14 @@ export default function Home() {
   return (
     <div className="space-y-12">
       <section className="space-y-4 pt-8">
-        <h1 className="text-4xl font-bold tracking-tight">Design Playground</h1>
+        <h1 className="font-bold tracking-tight">Design Playground</h1>
         <p className="max-w-2xl text-lg text-muted-foreground">
           A live design playground; explore styles, colors, and fonts.
         </p>
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold tracking-tight">Live Tweaks</h2>
+        <h2 className="font-semibold tracking-tight">Live Tweaks</h2>
         <p className="text-muted-foreground">
           Make design adjustements and see them reflected across the site in real time.
         </p>
@@ -53,7 +54,7 @@ export default function Home() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold tracking-tight">Examples</h2>
+        <h2 className="font-semibold tracking-tight">Examples</h2>
         <p className="text-muted-foreground">
           See your design choices come together on these example pages.
         </p>

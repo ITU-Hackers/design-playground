@@ -107,7 +107,7 @@ export default function ExamplePage() {
             key={stat.label}
             className="rounded-lg border border-border bg-card text-card-foreground p-6 text-center"
           >
-            <p className="text-3xl font-bold tracking-tight">{stat.value}</p>
+            <p className="font-bold tracking-tight">{stat.value}</p>
             <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
           </div>
         ))}
@@ -116,7 +116,7 @@ export default function ExamplePage() {
       {/* Features */}
       <section className="space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight">
+          <h2 className="font-bold tracking-tight">
             Everything you need
           </h2>
           <p className="mt-2 text-muted-foreground">
@@ -140,7 +140,7 @@ export default function ExamplePage() {
 
       {/* CTA Banner */}
       <section className="rounded-lg bg-primary px-8 py-12 text-center text-primary-foreground">
-        <h2 className="text-3xl font-bold tracking-tight">
+        <h2 className="font-bold tracking-tight">
           Ready to get started?
         </h2>
         <p className="mx-auto mt-3 max-w-xl text-primary-foreground/80">
@@ -167,7 +167,7 @@ export default function ExamplePage() {
       {/* Testimonials */}
       <section className="space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight">
+          <h2 className="font-bold tracking-tight">
             Trusted by teams everywhere
           </h2>
           <p className="mt-2 text-muted-foreground">
@@ -195,7 +195,7 @@ export default function ExamplePage() {
       {/* Pricing */}
       <section className="space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl font-bold tracking-tight">
+          <h2 className="font-bold tracking-tight">
             Simple, transparent pricing
           </h2>
           <p className="mt-2 text-muted-foreground">
@@ -244,7 +244,7 @@ export default function ExamplePage() {
       {/* Newsletter / Form */}
       <section className="rounded-lg border border-border bg-card text-card-foreground p-8">
         <div className="mx-auto max-w-md space-y-4 text-center">
-          <h2 className="text-2xl font-bold tracking-tight">Stay updated</h2>
+          <h2 className="font-bold tracking-tight">Stay updated</h2>
           <p className="text-sm text-muted-foreground">
             Subscribe to our newsletter for the latest updates and insights.
           </p>

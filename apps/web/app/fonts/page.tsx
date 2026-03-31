@@ -114,10 +114,8 @@ export default function FontsPage() {
         `"${headingFont.value}", serif`
       );
     } else {
-      document.documentElement.style.setProperty(
-        "--font-heading",
-        headingFont.value
-      );
+      const geistSans = getComputedStyle(document.body).getPropertyValue("--font-geist-sans").trim();
+      document.documentElement.style.setProperty("--font-heading", geistSans);
     }
     persist();
   }, [headingFont]);
@@ -126,12 +124,13 @@ export default function FontsPage() {
   useEffect(() => {
     if (bodyFont.google) {
       loadGoogleFont(bodyFont.value);
-      document.body.style.setProperty(
-        "--font-geist-sans",
+      document.documentElement.style.setProperty(
+        "--font-body",
         `"${bodyFont.value}", sans-serif`
       );
     } else {
-      document.body.style.removeProperty("--font-geist-sans");
+      const geistSans = getComputedStyle(document.body).getPropertyValue("--font-geist-sans").trim();
+      document.documentElement.style.setProperty("--font-body", geistSans);
     }
     persist();
   }, [bodyFont]);
@@ -145,7 +144,8 @@ export default function FontsPage() {
         `"${monoFont.value}", monospace`
       );
     } else {
-      document.body.style.removeProperty("--font-geist-mono");
+      const geistMono = getComputedStyle(document.body).getPropertyValue("--font-geist-mono").trim();
+      document.body.style.setProperty("--font-geist-mono", geistMono);
     }
     persist();
   }, [monoFont]);
@@ -193,17 +193,17 @@ export default function FontsPage() {
       </Panel>
 
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold">Headings</h2>
+        <h2 className="font-semibold">Headings</h2>
         <Panel className="space-y-4 font-heading">
-          <h1 className="text-4xl font-bold tracking-tight">Heading 1</h1>
-          <h2 className="text-3xl font-semibold tracking-tight">Heading 2</h2>
-          <h3 className="text-2xl font-semibold tracking-tight">Heading 3</h3>
-          <h4 className="text-xl font-semibold tracking-tight">Heading 4</h4>
+          <h1 className="font-bold tracking-tight">Heading 1</h1>
+          <h2 className="font-semibold tracking-tight">Heading 2</h2>
+          <h3 className="font-semibold tracking-tight">Heading 3</h3>
+          <h4 className="font-semibold tracking-tight">Heading 4</h4>
         </Panel>
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold">Body text</h2>
+        <h2 className="font-semibold">Body text</h2>
         <Panel className="space-y-4">
           <p className="text-lg">
             Large — Used for lead paragraphs and introductions.
@@ -218,7 +218,7 @@ export default function FontsPage() {
       </section>
 
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold">Monospace</h2>
+        <h2 className="font-semibold">Monospace</h2>
         <Panel className="space-y-4">
           <p className="font-mono text-sm">
             const greeting = &quot;Hello, world!&quot;;

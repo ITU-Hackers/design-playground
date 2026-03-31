@@ -1,0 +1,11 @@
+# TODO
+- Make background preset options less shit
+- Fix font selections
+- Fix hover color blending buttons into background 
+- Add Johan's colorschemes
+- Add Johan's fonts 
+- Intelligently render text black or white against background?
+- Shaders?
+- CSS animations?
+- Add more style controls?
+- Improve UI and category consistency?

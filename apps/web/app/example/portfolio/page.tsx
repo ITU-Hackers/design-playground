@@ -64,7 +64,7 @@ export default function PortfolioPage() {
 
       {/* Projects */}
       <section className="space-y-8">
-        <h2 className="text-3xl font-bold tracking-tight">Selected Projects</h2>
+        <h2 className="font-bold tracking-tight">Selected Projects</h2>
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((project) => (
             <div
@@ -74,7 +74,7 @@ export default function PortfolioPage() {
               <p className="mb-1 text-xs font-medium uppercase tracking-widest text-primary">
                 {project.category}
               </p>
-              <h3 className="mb-2 text-xl font-semibold">{project.title}</h3>
+              <h3 className="mb-2 font-semibold">{project.title}</h3>
               <p className="flex-1 text-sm text-muted-foreground">{project.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
@@ -93,7 +93,7 @@ export default function PortfolioPage() {
 
       {/* Skills */}
       <section className="space-y-8">
-        <h2 className="text-3xl font-bold tracking-tight">Skills & Tools</h2>
+        <h2 className="font-bold tracking-tight">Skills & Tools</h2>
         <div className="grid gap-6 sm:grid-cols-3">
           {skills.map((group) => (
             <div key={group.group} className="space-y-3">
@@ -116,7 +116,7 @@ export default function PortfolioPage() {
       {/* Contact */}
       <section className="rounded-lg bg-primary px-8 py-12 text-primary-foreground">
         <div className="mx-auto max-w-xl space-y-4 text-center">
-          <h2 className="text-3xl font-bold tracking-tight">Let's build something together</h2>
+          <h2 className="font-bold tracking-tight">Let's build something together</h2>
           <p className="text-primary-foreground/80">
             I'm currently open to new projects and full-time roles. If you have
             something interesting in mind, I'd love to hear about it.

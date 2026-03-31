@@ -4,6 +4,18 @@ import { useEffect } from "react";
 
 const RADIUS_KEY = "style:radius";
 const BG_KEY = "style:bg";
+const FONTS_KEY = "design-playground:fonts";
+
+function loadGoogleFont(family: string) {
+  const id = `google-font-${family.replace(/\s/g, "-")}`;
+  if (!document.getElementById(id)) {
+    const link = document.createElement("link");
+    link.id = id;
+    link.rel = "stylesheet";
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(family)}:wght@300;400;500;600;700&display=swap`;
+    document.head.appendChild(link);
+  }
+}
 
 function applyBg(bg: string) {
   if (!bg) {
@@ -29,6 +41,31 @@ export function StyleProvider() {
 
     const bg = localStorage.getItem(BG_KEY) ?? "";
     applyBg(bg);
+
+    try {
+      const fontsRaw = localStorage.getItem(FONTS_KEY);
+      if (fontsRaw) {
+        const { heading, body, mono } = JSON.parse(fontsRaw) as {
+          heading?: string;
+          body?: string;
+          mono?: string;
+        };
+        if (heading && heading !== "Geist Sans") {
+          loadGoogleFont(heading);
+          document.documentElement.style.setProperty("--font-heading", `"${heading}", serif`);
+        }
+        if (body && body !== "Geist Sans") {
+          loadGoogleFont(body);
+          document.documentElement.style.setProperty("--font-body", `"${body}", sans-serif`);
+        }
+        if (mono && mono !== "Geist Mono") {
+          loadGoogleFont(mono);
+          document.body.style.setProperty("--font-geist-mono", `"${mono}", monospace`);
+        }
+      }
+    } catch {
+      // ignore corrupt localStorage
+    }
 
     // Listen for updates from the style page
     function onStyleChange(e: Event) {

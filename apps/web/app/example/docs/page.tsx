@@ -102,7 +102,7 @@ export default function DocsPage() {
         {/* Header */}
         <div className="space-y-4 rounded-lg border border-border bg-card text-card-foreground p-6">
           <p className="font-mono text-sm text-primary">v2.4.1 — stable</p>
-          <h1 className="text-4xl font-bold tracking-tight">ITU-Hackers SDK</h1>
+          <h1 className="font-bold tracking-tight">ITU-Hackers SDK</h1>
           <p className="text-lg text-muted-foreground">
             A type-safe, batteries-included SDK for the ITU-Hackers Data Platform.
             Works in Node.js, Deno, and the browser.
@@ -116,7 +116,7 @@ export default function DocsPage() {
         {/* Sections */}
         {sections.map((section) => (
           <section key={section.id} id={section.id} className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">{section.title}</h2>
+            <h2 className="font-bold tracking-tight">{section.title}</h2>
             <p className="text-muted-foreground">{section.content}</p>
             <pre className="overflow-x-auto rounded-lg border border-border bg-muted p-4">
               <code className="font-mono text-sm">{section.code}</code>
@@ -126,7 +126,7 @@ export default function DocsPage() {
 
         {/* API Reference */}
         <section id="api-reference" className="space-y-6">
-          <h2 className="text-2xl font-bold tracking-tight">API Reference</h2>
+          <h2 className="font-bold tracking-tight">API Reference</h2>
           <p className="text-muted-foreground">
             Base URL: <code className="font-mono text-sm">https://api.ituhackers.dev</code>
           </p>

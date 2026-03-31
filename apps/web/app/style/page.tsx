@@ -57,7 +57,7 @@ export default function StylePage() {
 
       {/* Controls */}
       <Panel className="space-y-6">
-        <h2 className="text-xl font-semibold">Controls</h2>
+        <h2 className="font-semibold">Controls</h2>
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
@@ -145,7 +145,7 @@ export default function StylePage() {
 
       {/* Preview */}
       <section className="space-y-6">
-        <h2 className="text-xl font-semibold">Preview</h2>
+        <h2 className="font-semibold">Preview</h2>
 
         <div className="space-y-4">
           <h3 className="text-sm font-medium text-muted-foreground">
