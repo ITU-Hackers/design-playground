@@ -7,7 +7,7 @@ import { Panel } from "@/components/ui/panel";
 
 const BG_PRESETS = [
   { label: "None", value: "" },
-  { label: "Gradient", value: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)" },
+  { label: "Gradient", value: "linear-gradient(135deg, #d6d6fa 0%, #9db0e6 50%, #5f9ce6 100%)" },
   { label: "Mesh", value: "radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%), radial-gradient(at 0% 50%, hsla(355,100%,93%,1) 0px, transparent 50%)" },
   { label: "Dots", value: "radial-gradient(circle, #444 1px, transparent 1px)" },
 ];

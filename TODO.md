@@ -1,6 +1,5 @@
 # TODO
 - Make background preset options less shit
-- Fix font selections
 - Fix hover color blending buttons into background 
 - Add Johan's colorschemes
 - Add Johan's fonts 
