@@ -42,29 +42,45 @@ export function StyleProvider() {
     const bg = localStorage.getItem(BG_KEY) ?? "";
     applyBg(bg);
 
+    // Resolve the default font values from computed styles (same as fonts page does)
+    const geistSans = getComputedStyle(document.body).getPropertyValue("--font-geist-sans").trim();
+    const geistMono = getComputedStyle(document.body).getPropertyValue("--font-geist-mono").trim();
+
+    let heading = "Geist Sans";
+    let body = "Geist Sans";
+    let mono = "Geist Mono";
+
     try {
       const fontsRaw = localStorage.getItem(FONTS_KEY);
       if (fontsRaw) {
-        const { heading, body, mono } = JSON.parse(fontsRaw) as {
-          heading?: string;
-          body?: string;
-          mono?: string;
-        };
-        if (heading && heading !== "Geist Sans") {
-          loadGoogleFont(heading);
-          document.documentElement.style.setProperty("--font-heading", `"${heading}", serif`);
-        }
-        if (body && body !== "Geist Sans") {
-          loadGoogleFont(body);
-          document.documentElement.style.setProperty("--font-body", `"${body}", sans-serif`);
-        }
-        if (mono && mono !== "Geist Mono") {
-          loadGoogleFont(mono);
-          document.body.style.setProperty("--font-geist-mono", `"${mono}", monospace`);
-        }
+        const parsed = JSON.parse(fontsRaw) as { heading?: string; body?: string; mono?: string };
+        if (parsed.heading) heading = parsed.heading;
+        if (parsed.body) body = parsed.body;
+        if (parsed.mono) mono = parsed.mono;
       }
     } catch {
       // ignore corrupt localStorage
+    }
+
+    if (heading !== "Geist Sans") {
+      loadGoogleFont(heading);
+      document.documentElement.style.setProperty("--font-heading", `"${heading}", serif`);
+    } else if (geistSans) {
+      document.documentElement.style.setProperty("--font-heading", geistSans);
+    }
+
+    if (body !== "Geist Sans") {
+      loadGoogleFont(body);
+      document.documentElement.style.setProperty("--font-body", `"${body}", sans-serif`);
+    } else if (geistSans) {
+      document.documentElement.style.setProperty("--font-body", geistSans);
+    }
+
+    if (mono !== "Geist Mono") {
+      loadGoogleFont(mono);
+      document.body.style.setProperty("--font-geist-mono", `"${mono}", monospace`);
+    } else if (geistMono) {
+      document.body.style.setProperty("--font-geist-mono", geistMono);
     }
 
     // Listen for updates from the style page
