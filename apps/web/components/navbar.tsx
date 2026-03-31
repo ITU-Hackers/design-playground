@@ -46,7 +46,7 @@ export function Navbar() {
           {centerNavItems.map((item) => outlineLink(item.href, item.label))}
         </div>
         <nav className="flex items-center justify-end">
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="lg" className="text-lg" data-active={isExampleActive}>
                 Examples <ChevronDown className="ml-1 h-4 w-4" />

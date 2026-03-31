@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ITU Hackers Design Playground",
+  title: "Design Playground",
   description: "A live design playground for exploring components, styles, colors, and fonts",
 };
 
