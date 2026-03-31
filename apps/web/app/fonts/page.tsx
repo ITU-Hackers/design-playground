@@ -204,6 +204,7 @@ export default function FontsPage() {
       />
 
       <Panel className="space-y-4">
+        <h2 className="font-semibold">Select Fonts</h2>
         <FontSelect
           label="Heading Font"
           fonts={HEADING_FONTS}

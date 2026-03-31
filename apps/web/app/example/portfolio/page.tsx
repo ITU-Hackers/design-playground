@@ -58,7 +58,9 @@ export default function PortfolioPage() {
         </p>
         <div className="flex gap-3 pt-2">
           <Button size="lg">View My Work</Button>
-          <Button size="lg" variant="outline">Get in Touch</Button>
+          <Button size="lg" variant="secondary">
+            Get in Touch
+          </Button>
         </div>
       </section>
 
@@ -97,12 +99,12 @@ export default function PortfolioPage() {
         <div className="grid gap-6 sm:grid-cols-3">
           {skills.map((group) => (
             <div key={group.group} className="space-y-3">
-              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+              <h3 className="font-semibold uppercase tracking-widest text-muted-foreground">
                 {group.group}
               </h3>
               <ul className="space-y-2">
                 {group.items.map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm">
+                  <li key={item} className="flex items-center gap-2">
                     <span className="h-1 w-1 rounded-full bg-primary" />
                     {item}
                   </li>

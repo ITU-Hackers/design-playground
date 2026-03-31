@@ -92,17 +92,15 @@ export default function StylePage() {
             {BG_PRESETS.map((preset) => {
               const active = bgUrl === preset.value;
               return (
-                <button
+                <Button
                   key={preset.label}
+                  variant="outline"
+                  size="sm"
                   onClick={() => updateBg(preset.value)}
-                  className={`rounded-md border px-3 py-1 text-sm transition-colors ${
-                    active
-                      ? "border-foreground/40 bg-foreground/10 text-foreground"
-                      : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-                  }`}
+                  className={active ? "border-foreground/40 bg-foreground/10 text-foreground" : ""}
                 >
                   {preset.label}
-                </button>
+                </Button>
               );
             })}
           </div>
@@ -144,7 +142,7 @@ export default function StylePage() {
       </Panel>
 
       {/* Preview */}
-      <section className="space-y-6">
+      <Panel className="space-y-6">
         <h2 className="font-semibold">Preview</h2>
 
         <div className="space-y-4">
@@ -197,7 +195,7 @@ export default function StylePage() {
             />
           </div>
         </div>
-      </section>
+      </Panel>
     </div>
   );
 }

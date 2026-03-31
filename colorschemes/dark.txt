@@ -1,0 +1,17 @@
+background=#191d38
+foreground=#dde4ff
+card=#242951
+card-foreground=#dde4ff
+primary=#dde4ff
+primary-foreground=#191d38
+secondary=#363c6b
+secondary-foreground=#dde4ff
+muted=#242951
+muted-foreground=#8892b5
+accent=#363c6b
+accent-foreground=#dde4ff
+destructive=#e05a5a
+destructive-foreground=#ffffff
+border=#363c6b
+input=#2c3260
+ring=#dde4ff

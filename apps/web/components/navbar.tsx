@@ -26,8 +26,8 @@ const exampleItems = [
 export function Navbar() {
   const pathname = usePathname();
 
-  const outlineLink = (href: string, label: string) => (
-    <Button key={href} asChild variant="outline" size="lg" className="text-lg w-18" data-active={pathname === href}>
+  const centerLink = (href: string, label: string) => (
+    <Button key={href} asChild variant="secondary" size="lg" className="text-lg w-18" data-active={pathname === href}>
       <Link href={href}>{label}</Link>
     </Button>
   );
@@ -35,20 +35,20 @@ export function Navbar() {
   const isExampleActive = exampleItems.some((item) => pathname === item.href);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/40">
-      <div className="grid h-14 grid-cols-3 items-center px-6">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90">
+      <div className="grid h-14 grid-cols-3 items-center px-2">
         <div className="flex items-center">
           <Button asChild variant="default" size="lg" className="text-lg">
-            <Link href="/">Design Playground</Link>
+            <Link className="text-xl font-bold" href="/">Design Playground</Link>
           </Button>
         </div>
         <div className="flex items-center justify-center space-x-2">
-          {centerNavItems.map((item) => outlineLink(item.href, item.label))}
+          {centerNavItems.map((item) => centerLink(item.href, item.label))}
         </div>
         <nav className="flex items-center justify-end">
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="lg" className="text-lg" data-active={isExampleActive}>
+              <Button variant="outline" size="lg" className="text-lg" data-active={isExampleActive}>
                 Examples <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
