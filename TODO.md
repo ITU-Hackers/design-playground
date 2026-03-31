@@ -1,5 +1,5 @@
 # TODO
-- Make background preset options less shit
+- Make background preset options less shit, add controls
 - Intelligently render text black or white against background?
 - Improve UI and category consistency?
 - Autodetect light/dark theme preference
@@ -25,3 +25,27 @@
     - Sidebar width — if you have a nav sidebar, a slider for its width.
 
 The most impactful ones for a design playground are probably spacing scale, shadow intensity, surface blur, and animation speed — they dramatically change the "feel" of the UI without touching color or type.
+
+## Tech Debt / Clean-up Opportunities
+High Impact
+1. Duplicate loadGoogleFont function — defined identically in two files:
+
+style-provider.tsx:10-19
+fonts/page.tsx:41-50
+Extract to a shared lib/fonts.ts.
+
+2. Repeated font application useEffect blocks — three nearly identical blocks in fonts/page.tsx:144-185. Could be collapsed into a single applyFont(key, state) helper.
+
+3. Inconsistent CSS property target — most font properties use document.documentElement.style.setProperty(), but --font-geist-mono uses document.body.style.setProperty() in both fonts/page.tsx:177 and style-provider.tsx:101-103. Standardize to documentElement.
+
+Medium Impact
+4. Card className duplication — "rounded-lg border border-border bg-card text-card-foreground p-X" repeated across several files (landing/page.tsx, docs/page.tsx, page-footer.tsx). A Panel component already exists but isn't being used in these spots.
+
+5. Duplicate getComputedStyle calls — getComputedStyle(document.body).getPropertyValue("--font-geist-sans").trim() called identically in two separate effects in fonts/page.tsx:152 and 167.
+
+Low Impact
+6. @deprecated export with no removal — DEFAULT_COLORS in color.ts:142-143 is marked deprecated; worth checking if it's still imported anywhere and removing if not.
+
+7. Redundant explicit type annotations — a few places annotate types TypeScript could infer, e.g. docs/page.tsx:72 and colors/page.tsx:23.
+
+Want me to tackle any of these? The loadGoogleFont extraction + font effect consolidation would be the most meaningful wins for the least risk.
