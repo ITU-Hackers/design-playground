@@ -1,15 +1,29 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/page-header";
 import { Panel } from "@/components/ui/panel";
 
 const BG_PRESETS = [
   { label: "None", value: "" },
-  { label: "Gradient", value: "linear-gradient(135deg, #d6d6fa 0%, #9db0e6 50%, #5f9ce6 100%)" },
-  { label: "Mesh", value: "radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0px, transparent 50%), radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%), radial-gradient(at 0% 50%, hsla(355,100%,93%,1) 0px, transparent 50%)" },
-  { label: "Dots", value: "radial-gradient(circle, #444 1px, transparent 1px)" },
+  {
+    label: "Gradient",
+    value: "linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--primary) / 0.15) 100%)",
+  },
+  {
+    label: "Mesh",
+    value: [
+      "radial-gradient(at 20% 30%, hsl(var(--primary) / 0.2) 0px, transparent 60%)",
+      "radial-gradient(at 80% 10%, hsl(var(--muted-foreground) / 0.15) 0px, transparent 50%)",
+      "radial-gradient(at 10% 75%, hsl(var(--primary) / 0.12) 0px, transparent 55%)",
+      "radial-gradient(at 85% 80%, hsl(var(--muted-foreground) / 0.1) 0px, transparent 50%)",
+    ].join(", "),
+  },
+  {
+    label: "Dots",
+    value: "radial-gradient(circle, hsl(var(--foreground) / 0.25) 1px, transparent 1px)",
+  },
 ];
 
 function dispatch(key: string, value: string) {
@@ -17,14 +31,15 @@ function dispatch(key: string, value: string) {
 }
 
 export default function StylePage() {
-  const [radius, setRadius] = useState(() =>
-    typeof window === "undefined" ? 0.5 : parseFloat(localStorage.getItem("style:radius") ?? "0.5")
-  );
-  const [bgUrl, setBgUrl] = useState(() =>
-    typeof window === "undefined" ? "" : (localStorage.getItem("style:bg") ?? "")
-  );
+  const [radius, setRadius] = useState(0.5);
+  const [bgUrl, setBgUrl] = useState("");
   const [bgInput, setBgInput] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setRadius(parseFloat(localStorage.getItem("style:radius") ?? "0.5"));
+    setBgUrl(localStorage.getItem("style:bg") ?? "");
+  }, []);
 
   function updateRadius(value: number) {
     setRadius(value);
@@ -85,7 +100,7 @@ export default function StylePage() {
         </div>
 
         <div className="space-y-3">
-          <label className="text-sm font-medium">Background Picture</label>
+          <label className="text-sm font-medium">Background Presets</label>
 
           {/* Presets */}
           <div className="flex flex-wrap gap-2">
@@ -104,6 +119,9 @@ export default function StylePage() {
               );
             })}
           </div>
+        </div>
+        <div className="space-y-3">
+          <label className="text-sm font-medium">Background Image</label>
 
           {/* File picker + URL input */}
           <div className="flex gap-2">
