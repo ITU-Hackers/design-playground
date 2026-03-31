@@ -247,7 +247,7 @@ export default function FontsPage() {
           <div className="space-y-4 pt-4 px-6 pb-4">
             <p className="text-lg">The quick brown fox jumps over the lazy dog (large)</p>
             <p className="text-base">The quick brown fox jumps over the lazy dog (default)</p>
-            <p className="text-sm text-muted-foreground">The quick brown fox jumps over the lazy dog (small/muted)</p>
+            <p className="text-sm text-muted-foreground">The quick brown fox jumps over the lazy dog (small)</p>
           </div>
           <div className="space-y-4 pt-4 pl-6 pb-4">
            <pre className="font-mono text-sm">{
@@ -256,9 +256,10 @@ export default function FontsPage() {
 def hello_world(print):
     if print != "print":
         sys.exit(1)
-    print("Hello, World!")`
+    print("Hello, World!")
+    
+hello_world("print");`
             }</pre>
-            <p className="font-mono text-sm">hello_world("print");</p>
           </div>
         </div>
       </Panel>
