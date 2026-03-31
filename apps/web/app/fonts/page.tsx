@@ -225,42 +225,44 @@ export default function FontsPage() {
         />
       </Panel>
 
-      <section className="space-y-6">
-        <h2 className="font-semibold">Headings</h2>
-        <Panel className="space-y-4 font-heading">
-          <h1 className="font-bold tracking-tight">Heading 1</h1>
-          <h2 className="font-semibold tracking-tight">Heading 2</h2>
-          <h3 className="font-semibold tracking-tight">Heading 3</h3>
-          <h4 className="font-semibold tracking-tight">Heading 4</h4>
-        </Panel>
-      </section>
+      <Panel>
+        <h2 className="font-semibold">Preview Fonts</h2>
+        <div className="mt-5 grid grid-cols-3 divide-x divide-border">
+          {/* Row 1: Headers */}
+          <div className="pb-4 px-6 border-b border-border">
+            <h3 className="mt-4 font-semibold tracking-widest text-muted-foreground text-center">Headings</h3>
+          </div>
+          <div className=" pb-4 px-6 border-b border-border">
+            <h3 className=" mt-4 font-semibold tracking-widest text-muted-foreground text-center">Body</h3>
+          </div>
+          <div className="pb-4 pl-6 border-b border-border">
+            <h3 className="mt-4 font-semibold tracking-widest text-muted-foreground text-center">Monospace</h3>
+          </div>
+          {/* Row 2: Previews */}
+          <div className="space-y-4 pt-4 px-6 pb-4">
+            <h1 className="font-bold">Heading 1</h1>
+            <h2 className="font-semibold">Heading 2</h2>
+            <h3 className="font-semibold">Heading 3</h3>
+            <h4 className="font-semibold">Heading 4</h4>
+          </div>
+          <div className="space-y-4 pt-4 px-6 pb-4">
+            <p className="text-lg">The quick brown fox jumps over the lazy dog (large)</p>
+            <p className="text-base">The quick brown fox jumps over the lazy dog (default)</p>
+            <p className="text-sm text-muted-foreground">The quick brown fox jumps over the lazy dog (small/muted)</p>
+          </div>
+          <div className="space-y-4 pt-4 pl-6 pb-4">
+           <pre className="font-mono text-sm">{
+`import sys
 
-      <section className="space-y-6">
-        <h2 className="font-semibold">Body text</h2>
-        <Panel className="space-y-4">
-          <p className="text-lg">
-            Large — Used for lead paragraphs and introductions.
-          </p>
-          <p className="text-base">
-            Base — The default body text size for general content.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            Small / Muted — Used for supporting text and captions.
-          </p>
-        </Panel>
-      </section>
-
-      <section className="space-y-6">
-        <h2 className="font-semibold">Monospace</h2>
-        <Panel className="space-y-4">
-          <p className="font-mono text-sm">
-            const greeting = &quot;Hello, world!&quot;;
-          </p>
-          <p className="font-mono text-sm">
-            function add(a: number, b: number): number &#123; return a + b; &#125;
-          </p>
-        </Panel>
-      </section>
+def hello_world(print):
+    if print != "print":
+        sys.exit(1)
+    print("Hello, World!")`
+            }</pre>
+            <p className="font-mono text-sm">hello_world("print");</p>
+          </div>
+        </div>
+      </Panel>
     </div>
   );
 }
