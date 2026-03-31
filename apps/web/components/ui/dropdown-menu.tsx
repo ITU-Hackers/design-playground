@@ -16,6 +16,7 @@ const DropdownMenuContent = React.forwardRef<
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
+      disableOutsideScroll={false}
       className={cn(
         "z-50 w-[var(--radix-dropdown-menu-trigger-width)] min-w-[8rem] overflow-hidden rounded-md border border-border bg-background p-1 shadow-md",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
