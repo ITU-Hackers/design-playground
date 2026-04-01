@@ -184,7 +184,7 @@ export default function StylePage() {
         <div className="space-y-4">
           <h3 className="text-sm font-medium text-muted-foreground">Cards</h3>
           <div className="grid gap-4 sm:grid-cols-3">
-            {["Primary", "Secondary", "Outline"].map((label) => (
+            {["Cool", "Even Cooler", "Super Cool"].map((label) => (
               <div
                 key={label}
                 className="rounded-lg border border-border bg-card text-card-foreground p-4"
