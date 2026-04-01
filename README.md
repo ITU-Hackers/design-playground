@@ -1,6 +1,6 @@
 # ITU Hackers Design Playground
 
-A live design playground for **ITU Hackers** to define and preview a shared visual identity before hackathon projects. Tweak border radius, colors, and fonts in real time, then see how they look on a realistic example page.
+A live design playground for the **ITU Hackers** team to define, preview, and iterate upon UI design for hackathon projects. Make design tweaks and see them reflected on realistic example pages.
 
 ## Prerequisites
 
@@ -11,33 +11,16 @@ A live design playground for **ITU Hackers** to define and preview a shared visu
 
 ```sh
 # Clone the repo
-git clone <repo-url>
-cd style-guide
+git clone https://github.com/ITU-Hackers/design-playground.git 
+
+# Navigate to project root
+cd design-playground
 
 # Install dependencies
 pnpm install
-```
 
-## Running locally
-
-```sh
+# Run locally
 pnpm dev
 ```
 
 The app will be available at [http://localhost:3000](http://localhost:3000).
-
-## Building for production
-
-```sh
-pnpm build
-```
-
-## Project structure
-
-```
-apps/
-  web/          # Next.js app (the design playground)
-packages/
-  eslint-config/        # Shared ESLint config
-  typescript-config/    # Shared TypeScript config
-```
