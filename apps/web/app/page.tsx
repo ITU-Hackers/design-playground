@@ -97,6 +97,11 @@ export default function Home() {
           ))}
         </section>
       </Panel>
+
+      <PageFooter
+        name="ITU HACKERS"
+        githubUrl="https://github.com/ITU-Hackers/design-playground"
+      />
     </div>
   );
 }
