@@ -116,14 +116,14 @@ export default function PortfolioPage() {
       </section>
 
       {/* Contact */}
-      <section className="rounded-lg bg-primary px-8 py-12 text-primary-foreground">
+      <section className="rounded-lg bg-accent px-8 py-12 text-accent-foreground">
         <div className="mx-auto max-w-xl space-y-4 text-center">
           <h2 className="font-bold tracking-tight">Let's build something together</h2>
-          <p className="text-primary-foreground/80">
+          <p className="text-accent-foreground/80">
             I'm currently open to new projects and full-time roles. If you have
             something interesting in mind, I'd love to hear about it.
           </p>
-          <Button size="lg" variant="secondary">
+          <Button size="lg" variant="default">
             Say Hello
           </Button>
         </div>

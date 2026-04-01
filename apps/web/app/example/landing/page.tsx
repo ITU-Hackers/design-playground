@@ -94,7 +94,7 @@ export default function ExamplePage() {
         </p>
         <div className="flex justify-center gap-3 pt-2">
           <Button size="lg">Get Started</Button>
-          <Button size="lg" variant="outline">
+          <Button size="lg" variant="secondary">
             Learn More
           </Button>
         </div>
@@ -139,25 +139,25 @@ export default function ExamplePage() {
       </section>
 
       {/* CTA Banner */}
-      <section className="rounded-lg bg-primary px-8 py-12 text-center text-primary-foreground">
+      <section className="rounded-lg bg-accent px-8 py-12 text-center text-accent-foreground">
         <h2 className="font-bold tracking-tight">
           Ready to get started?
         </h2>
-        <p className="mx-auto mt-3 max-w-xl text-primary-foreground/80">
+        <p className="mx-auto mt-3 max-w-xl text-accent-foreground/80">
           Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
           quam nihil molestiae consequatur.
         </p>
         <div className="mt-6 flex justify-center gap-3">
           <Button
             size="lg"
-            variant="secondary"
+            variant="default"
           >
             Start Free Trial
           </Button>
           <Button
             size="lg"
             variant="outline"
-            className="bg-transparent border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+            className="bg-transparent border-accent-foreground/20 text-accent-foreground hover:bg-accent-foreground/10 hover:text-accent-foreground"
           >
             Contact Sales
           </Button>
