@@ -6,6 +6,7 @@ import { useCodeTheme } from "@/lib/use-code-theme";
 import { PageHeader } from "@/components/ui/page-header";
 import { Panel } from "@/components/ui/panel";
 import { ChevronDown } from "lucide-react";
+import { loadGoogleFont } from "@/lib/fonts";
 
 const HEADING_FONTS = [
   { name: "Geist Sans", value: "var(--font-geist-sans)", google: false },
@@ -40,19 +41,24 @@ const MONO_FONTS = [
 
 const STORAGE_KEY = "design-playground:fonts";
 
-function loadGoogleFont(value: string) {
-  const id = `google-font-${value.replace(/\s/g, "-")}`;
-  if (!document.getElementById(id)) {
-    const link = document.createElement("link");
-    link.id = id;
-    link.rel = "stylesheet";
-    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(value)}:wght@300;400;500;600;700&display=swap`;
-    document.head.appendChild(link);
-  }
-}
 
 function fontFamilyStyle(font: { value: string; google: boolean }): string {
   return font.google ? `"${font.value}", sans-serif` : font.value;
+}
+
+function applyFont(
+  font: { value: string; google: boolean },
+  cssVar: string,
+  fallbackVar: string,
+  genericFamily: string,
+) {
+  if (font.google) {
+    loadGoogleFont(font.value);
+    document.documentElement.style.setProperty(cssVar, `"${font.value}", ${genericFamily}`);
+  } else {
+    const fallback = getComputedStyle(document.body).getPropertyValue(fallbackVar).trim();
+    document.documentElement.style.setProperty(cssVar, fallback);
+  }
 }
 
 function FontSelect({
@@ -112,10 +118,28 @@ function FontSelect({
   );
 }
 
+function getPersistedFonts(): { heading?: string; body?: string; mono?: string } {
+  if (typeof window === "undefined") return {};
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch { /* ignore */ }
+  return {};
+}
+
 export default function FontsPage() {
-  const [headingFont, setHeadingFont] = useState(HEADING_FONTS[0]!);
-  const [bodyFont, setBodyFont] = useState(BODY_FONTS[0]!);
-  const [monoFont, setMonoFont] = useState(MONO_FONTS[0]!);
+  const [headingFont, setHeadingFont] = useState(() => {
+    const { heading } = getPersistedFonts();
+    return HEADING_FONTS.find((f) => f.name === heading) ?? HEADING_FONTS[0]!;
+  });
+  const [bodyFont, setBodyFont] = useState(() => {
+    const { body } = getPersistedFonts();
+    return BODY_FONTS.find((f) => f.name === body) ?? BODY_FONTS[0]!;
+  });
+  const [monoFont, setMonoFont] = useState(() => {
+    const { mono } = getPersistedFonts();
+    return MONO_FONTS.find((f) => f.name === mono) ?? MONO_FONTS[0]!;
+  });
   const codeTheme = useCodeTheme();
 
   // Pre-load all Google fonts for dropdown previews
@@ -125,68 +149,9 @@ export default function FontsPage() {
       .forEach((f) => loadGoogleFont(f.value));
   }, []);
 
-  // Load persisted font selections
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const { heading, body, mono } = JSON.parse(saved);
-        const h = HEADING_FONTS.find((f) => f.name === heading);
-        const b = BODY_FONTS.find((f) => f.name === body);
-        const m = MONO_FONTS.find((f) => f.name === mono);
-        if (h) setHeadingFont(h);
-        if (b) setBodyFont(b);
-        if (m) setMonoFont(m);
-      }
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  // Apply heading font
-  useEffect(() => {
-    if (headingFont.google) {
-      loadGoogleFont(headingFont.value);
-      document.documentElement.style.setProperty(
-        "--font-heading",
-        `"${headingFont.value}", serif`
-      );
-    } else {
-      const geistSans = getComputedStyle(document.body).getPropertyValue("--font-geist-sans").trim();
-      document.documentElement.style.setProperty("--font-heading", geistSans);
-    }
-    persist();
-  }, [headingFont]);
-
-  // Apply body font
-  useEffect(() => {
-    if (bodyFont.google) {
-      loadGoogleFont(bodyFont.value);
-      document.documentElement.style.setProperty(
-        "--font-body",
-        `"${bodyFont.value}", sans-serif`
-      );
-    } else {
-      const geistSans = getComputedStyle(document.body).getPropertyValue("--font-geist-sans").trim();
-      document.documentElement.style.setProperty("--font-body", geistSans);
-    }
-    persist();
-  }, [bodyFont]);
-
-  // Apply mono font
-  useEffect(() => {
-    if (monoFont.google) {
-      loadGoogleFont(monoFont.value);
-      document.documentElement.style.setProperty(
-        "--font-mono",
-        `"${monoFont.value}", monospace`
-      );
-    } else {
-      const geistMono = getComputedStyle(document.body).getPropertyValue("--font-geist-mono").trim();
-      document.documentElement.style.setProperty("--font-mono", geistMono);
-    }
-    persist();
-  }, [monoFont]);
+  useEffect(() => { applyFont(headingFont, "--font-heading", "--font-geist-sans", "serif"); persist(); }, [headingFont]);
+  useEffect(() => { applyFont(bodyFont, "--font-body", "--font-geist-sans", "sans-serif"); persist(); }, [bodyFont]);
+  useEffect(() => { applyFont(monoFont, "--font-mono", "--font-geist-mono", "monospace"); persist(); }, [monoFont]);
 
   function persist() {
     localStorage.setItem(
