@@ -128,8 +128,17 @@ export default function DocsPage() {
             <p className="text-muted-foreground">{section.content}</p>
             <SyntaxHighlighter
               language={section.language}
-              style={oneDark}
-              customStyle={{ borderRadius: "0.5rem", fontSize: "0.875rem", margin: 0 }}
+              style={{
+                ...oneDark, 'code[class*="language-"]': {...oneDark['code[class*="language-"]'], background: "transparent"},
+              }}
+              customStyle={{ 
+                borderRadius: "0.5rem", 
+                margin: 0,
+                fontSize: "0.875rem", 
+                fontFamily: "var(--font-mono)",
+                background: "hsl(var(--card))",
+                border: "1px solid hsl(var(--border))",
+              }}
             >
               {section.code}
             </SyntaxHighlighter>
