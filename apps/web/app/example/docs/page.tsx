@@ -129,7 +129,7 @@ export default function DocsPage() {
             <SyntaxHighlighter
               language={section.language}
               style={{
-                ...oneDark, 'code[class*="language-"]': {...oneDark['code[class*="language-"]'], background: "transparent"},
+                ...oneDark, 'code[class*="language-"]': {...oneDark['code[class*="language-"]'], background: "transparent", fontFamily: "var(--font-mono)"},
               }}
               customStyle={{ 
                 borderRadius: "0.5rem", 

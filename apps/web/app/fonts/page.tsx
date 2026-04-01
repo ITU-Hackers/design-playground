@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { PageHeader } from "@/components/ui/page-header";
 import { Panel } from "@/components/ui/panel";
 import { ChevronDown } from "lucide-react";
@@ -174,12 +176,13 @@ export default function FontsPage() {
   useEffect(() => {
     if (monoFont.google) {
       loadGoogleFont(monoFont.value);
-      document.body.style.setProperty(
-        "--font-geist-mono",
+      document.documentElement.style.setProperty(
+        "--font-mono",
         `"${monoFont.value}", monospace`
       );
     } else {
-      document.body.style.removeProperty("--font-geist-mono");
+      const geistMono = getComputedStyle(document.body).getPropertyValue("--font-geist-mono").trim();
+      document.documentElement.style.setProperty("--font-mono", geistMono);
     }
     persist();
   }, [monoFont]);
@@ -249,17 +252,28 @@ export default function FontsPage() {
             <p className="text-base">The quick brown fox jumps over the lazy dog (default)</p>
             <p className="text-sm text-muted-foreground">The quick brown fox jumps over the lazy dog (small)</p>
           </div>
-          <div className="space-y-4 pt-4 pl-6 pb-4">
-           <pre className="font-mono text-sm">{
+          <div className="pt-4 pl-6 pb-4">
+            <SyntaxHighlighter
+              language="python"
+              style={{
+                ...oneDark, 'code[class*="language-"]': {...oneDark['code[class*="language-"]'], background: "transparent", fontFamily: monoFont.google ? `"${monoFont.value}", monospace` : "var(--font-geist-mono)"},
+              }}
+              customStyle={{
+                margin: 0,
+                padding: 0,
+                fontSize: "0.875rem",
+                fontFamily: monoFont.google ? `"${monoFont.value}", monospace` : "var(--font-geist-mono)",
+                background: "hsl(var(--card))",
+              }}
+            >{
 `import sys
 
 def hello_world(print):
     if print != "print":
         sys.exit(1)
     print("Hello, World!")
-    
-hello_world("print");`
-            }</pre>
+
+hello_world("print");`}</SyntaxHighlighter>
           </div>
         </div>
       </Panel>
