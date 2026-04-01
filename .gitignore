@@ -39,3 +39,7 @@ yarn-error.log*
 
 # AI
 .claude
+
+# Editor stuff
+.idea
+.vscode
