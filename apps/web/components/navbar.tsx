@@ -26,17 +26,26 @@ const exampleItems = [
 export function Navbar() {
   const pathname = usePathname();
 
-  const centerLink = (href: string, label: string) => (
-    <Button key={href} asChild variant="secondary" size="lg" className="text-lg">
-      <Link href={href}>{label}</Link>
-    </Button>
-  );
+  const centerLink = (href: string, label: string) => {
+    const isActive = pathname === href;
+    return (
+      <Button
+        key={href}
+        asChild
+        variant="secondary"
+        size="lg"
+        className={`text-lg${isActive ? " ring-2 ring-secondary-foreground" : ""}`}
+      >
+        <Link href={href}>{label}</Link>
+      </Button>
+    );
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90">
       <div className="grid h-14 grid-cols-3 items-center px-2">
         <div className="flex items-center">
-          <Button asChild variant="default" size="lg" className="text-lg">
+          <Button asChild variant="default" size="lg" className={`text-lg${pathname === "/" ? " ring-2 ring-primary-foreground" : ""}`}>
             <Link className="text-xl font-bold" href="/">Design Playground</Link>
           </Button>
         </div>
@@ -46,7 +55,7 @@ export function Navbar() {
         <nav className="flex items-center justify-end">
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="lg" className="text-lg">
+              <Button variant="outline" size="lg" className={`text-lg${pathname.startsWith("/example") ? " ring-2 ring-foreground" : ""}`}>
                 Examples <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
