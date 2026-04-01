@@ -1,5 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { PageFooter } from "@/components/page-footer";
+import { Panel } from "@/components/ui/panel";
+import { Badge } from "@/components/ui/badge";
+import { CtaBanner } from "@/components/ui/cta-banner";
 
 const projects = [
   {
@@ -43,9 +46,7 @@ export default function PortfolioPage() {
     <div className="space-y-20">
       {/* Hero */}
       <section className="space-y-6 pt-10">
-        <p className="text-sm font-medium uppercase tracking-widest text-primary">
-          Available for freelance
-        </p>
+        <Badge size="md">Available for freelance</Badge>
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
           Hi, I'm ITU Hacker.
           <br />
@@ -69,26 +70,19 @@ export default function PortfolioPage() {
         <h2 className="font-bold tracking-tight">Selected Projects</h2>
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((project) => (
-            <div
+            <Panel
               key={project.title}
-              className="group flex flex-col rounded-lg border border-border bg-card text-card-foreground p-6 transition-colors hover:border-primary/40 hover:bg-accent/30"
+              className="group flex flex-col transition-colors hover:border-primary/40 hover:bg-accent/30"
             >
-              <p className="mb-1 text-xs font-medium uppercase tracking-widest text-primary">
-                {project.category}
-              </p>
+              <Badge className="mb-1">{project.category}</Badge>
               <h3 className="mb-2 font-semibold">{project.title}</h3>
               <p className="flex-1 text-sm text-muted-foreground">{project.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-md border border-border px-2 py-0.5 text-xs text-muted-foreground"
-                  >
-                    {tag}
-                  </span>
+                  <Badge key={tag} variant="outline">{tag}</Badge>
                 ))}
               </div>
-            </div>
+            </Panel>
           ))}
         </div>
       </section>
@@ -116,18 +110,14 @@ export default function PortfolioPage() {
       </section>
 
       {/* Contact */}
-      <section className="rounded-lg bg-accent px-8 py-12 text-accent-foreground border-primary/40">
-        <div className="mx-auto max-w-xl space-y-4 text-center">
-          <h2 className="font-bold tracking-tight">Let's build something together</h2>
-          <p className="text-accent-foreground/80">
-            I'm currently open to new projects and full-time roles. If you have
-            something interesting in mind, I'd love to hear about it.
-          </p>
-          <Button size="lg" variant="default">
-            Say Hello
-          </Button>
-        </div>
-      </section>
+      <CtaBanner
+        title="Let's build something together"
+        description="I'm currently open to new projects and full-time roles. If you have something interesting in mind, I'd love to hear about it."
+      >
+        <Button size="lg" variant="default">
+          Say Hello
+        </Button>
+      </CtaBanner>
 
       <PageFooter
         name="ITU Hacker"

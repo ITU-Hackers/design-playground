@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { PageFooter } from "@/components/page-footer";
 import { Panel } from "@/components/ui/panel";
+import { Badge } from "@/components/ui/badge";
+import { CtaBanner } from "@/components/ui/cta-banner";
+import { PageHeader } from "@/components/ui/page-header";
 
 const features = [
   {
@@ -82,9 +85,7 @@ export default function ExamplePage() {
     <div className="space-y-20">
       {/* Hero */}
       <section className="space-y-6 pt-10 text-center">
-        <p className="text-sm font-medium uppercase tracking-widest text-primary">
-          Introducing ITU-Hackers Platform
-        </p>
+        <Badge size="md">Introducing ITU-Hackers Platform</Badge>
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
           Build something{" "}
           <span className="text-primary">extraordinary</span>
@@ -114,98 +115,80 @@ export default function ExamplePage() {
 
       {/* Features */}
       <section className="space-y-8">
-        <div className="text-center">
-          <h2 className="font-bold tracking-tight">
-            Everything you need
-          </h2>
-          <p className="mt-2 text-muted-foreground">
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur.
-          </p>
-        </div>
+        <PageHeader
+          as="h2"
+          centered
+          title="Everything you need"
+          description="Nemo enim ipsam voluptatem quia voluptas sit aspernatur."
+        />
         <div className="grid gap-6 sm:grid-cols-3">
           {features.map((feature) => (
             <Panel key={feature.title}>
               <h3 className="mb-2 font-semibold">{feature.title}</h3>
-              <p className="text-muted-foreground">
-                {feature.description}
-              </p>
+              <p className="text-muted-foreground">{feature.description}</p>
             </Panel>
           ))}
         </div>
       </section>
 
       {/* CTA Banner */}
-      <section className="rounded-lg bg-accent px-8 py-12 text-center text-accent-foreground border-primary/40">
-        <h2 className="font-bold tracking-tight">
-          Ready to get started?
-        </h2>
-        <p className="mx-auto mt-3 max-w-xl text-accent-foreground/80">
-          Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse
-          quam nihil molestiae consequatur.
-        </p>
-        <div className="mt-6 flex justify-center gap-3">
-          <Button
-            size="lg"
-            variant="default"
-          >
-            Start Free Trial
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="bg-transparent border-accent-foreground/20 text-accent-foreground hover:bg-accent-foreground/10 hover:text-accent-foreground"
-          >
-            Contact Sales
-          </Button>
-        </div>
-      </section>
+      <CtaBanner
+        title="Ready to get started?"
+        description="Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur."
+      >
+        <Button size="lg" variant="default">
+          Start Free Trial
+        </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          className="bg-transparent border-accent-foreground/20 text-accent-foreground hover:bg-accent-foreground/10 hover:text-accent-foreground"
+        >
+          Contact Sales
+        </Button>
+      </CtaBanner>
 
       {/* Testimonials */}
       <section className="space-y-8">
-        <div className="text-center">
-          <h2 className="font-bold tracking-tight">
-            Trusted by teams everywhere
-          </h2>
-          <p className="mt-2 text-muted-foreground">
-            Hear what our customers have to say.
-          </p>
-        </div>
+        <PageHeader
+          as="h2"
+          centered
+          title="Trusted by teams everywhere"
+          description="Hear what our customers have to say."
+        />
         <div className="grid gap-6 sm:grid-cols-2">
           {testimonials.map((t) => (
-            <blockquote
-              key={t.name}
-              className="rounded-lg border border-border bg-card text-card-foreground p-6"
-            >
-              <p className="italic text-muted-foreground">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <footer className="mt-4">
-                <p className="text-sm font-semibold">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </footer>
-            </blockquote>
+            <Panel key={t.name}>
+              <blockquote>
+                <p className="italic text-muted-foreground">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <footer className="mt-4">
+                  <p className="text-sm font-semibold">{t.name}</p>
+                  <p className="text-xs text-muted-foreground">{t.role}</p>
+                </footer>
+              </blockquote>
+            </Panel>
           ))}
         </div>
       </section>
 
       {/* Pricing */}
       <section className="space-y-8">
-        <div className="text-center">
-          <h2 className="font-bold tracking-tight">
-            Simple, transparent pricing
-          </h2>
-          <p className="mt-2 text-muted-foreground">
-            No hidden fees. Cancel anytime.
-          </p>
-        </div>
+        <PageHeader
+          as="h2"
+          centered
+          title="Simple, transparent pricing"
+          description="No hidden fees. Cancel anytime."
+        />
         <div className="grid gap-6 sm:grid-cols-3">
           {plans.map((plan) => (
-            <div
+            <Panel
               key={plan.name}
-              className={`flex flex-col rounded-lg border p-6 ${
+              className={`flex flex-col ${
                 plan.highlighted
                   ? "border-primary bg-accent text-accent-foreground"
-                  : "border-border bg-card text-card-foreground"
+                  : ""
               }`}
             >
               <h3 className="text-lg font-semibold">{plan.name}</h3>
@@ -232,13 +215,13 @@ export default function ExamplePage() {
               >
                 Choose {plan.name}
               </Button>
-            </div>
+            </Panel>
           ))}
         </div>
       </section>
 
       {/* Newsletter / Form */}
-      <section className="rounded-lg border border-border bg-card text-card-foreground p-8">
+      <Panel className="p-8">
         <div className="mx-auto max-w-md space-y-4 text-center">
           <h2 className="font-bold tracking-tight">Stay updated</h2>
           <p className="text-sm text-muted-foreground">
@@ -252,7 +235,7 @@ export default function ExamplePage() {
             No spam. Unsubscribe at any time.
           </p>
         </div>
-      </section>
+      </Panel>
 
       <PageFooter
         name="ITU-Hackers Inc."

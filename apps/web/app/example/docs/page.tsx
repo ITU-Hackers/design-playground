@@ -4,6 +4,16 @@ import { CodeBlock } from "@/components/ui/code-block";
 import { Button } from "@/components/ui/button";
 import { PageFooter } from "@/components/page-footer";
 import { Panel } from "@/components/ui/panel";
+import { Badge } from "@/components/ui/badge";
+import { PageHeader } from "@/components/ui/page-header";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 
 const sections = [
   {
@@ -109,7 +119,7 @@ export default function DocsPage() {
       <div className="min-w-0 flex-1 space-y-16">
         {/* Header */}
         <Panel className="space-y-4">
-          <p className="font-mono text-sm text-primary">v2.4.1 — stable</p>
+          <Badge variant="method" className="text-primary">v2.4.1 — stable</Badge>
           <h1 className="font-bold tracking-tight">ITU-Hackers SDK</h1>
           <p className="text-lg text-muted-foreground">
             A type-safe, batteries-included SDK for the ITU-Hackers Data Platform.
@@ -124,8 +134,7 @@ export default function DocsPage() {
         {/* Sections */}
         {sections.map((section) => (
           <section key={section.id} id={section.id} className="space-y-4">
-            <h2 className="font-bold tracking-tight">{section.title}</h2>
-            <p className="text-muted-foreground">{section.content}</p>
+            <PageHeader as="h2" title={section.title} description={section.content} />
             <CodeBlock language={section.language} bordered>
               {section.code}
             </CodeBlock>
@@ -134,36 +143,37 @@ export default function DocsPage() {
 
         {/* API Reference */}
         <section id="api-reference" className="space-y-6">
-          <h2 className="font-bold tracking-tight">API Reference</h2>
-          <p className="text-muted-foreground">
-            Base URL: <code className="font-mono text-sm">https://api.ituhackers.dev</code>
-          </p>
-          <div className="overflow-hidden rounded-lg border border-border bg-card">
-            <table className="w-full text-sm">
-              <thead className="border-b border-border bg-muted">
-                <tr>
-                  <th className="px-4 py-3 text-left font-semibold">Method</th>
-                  <th className="px-4 py-3 text-left font-semibold">Endpoint</th>
-                  <th className="px-4 py-3 text-left font-semibold">Description</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {endpoints.map((ep) => (
-                  <tr key={`${ep.method}-${ep.path}`} className="hover:bg-muted/40">
-                    <td className="px-4 py-3">
-                      <span className={`font-mono font-semibold ${methodColors[ep.method]}`}>
-                        {ep.method}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3">
-                      <code className="font-mono text-xs">{ep.path}</code>
-                    </td>
-                    <td className="px-4 py-3 text-muted-foreground">{ep.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <PageHeader
+            as="h2"
+            title="API Reference"
+            description={<>Base URL: <code className="font-mono text-sm">https://api.ituhackers.dev</code></>}
+          />
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Method</TableHead>
+                <TableHead>Endpoint</TableHead>
+                <TableHead>Description</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {endpoints.map((ep) => (
+                <TableRow key={`${ep.method}-${ep.path}`}>
+                  <TableCell>
+                    <Badge variant="method" className={methodColors[ep.method]}>
+                      {ep.method}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <code className="font-mono text-xs">{ep.path}</code>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">
+                    {ep.description}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </section>
 
         <PageFooter
