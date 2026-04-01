@@ -1,7 +1,7 @@
 "use client";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useCodeTheme } from "@/lib/use-code-theme";
 import { Button } from "@/components/ui/button";
 import { PageFooter } from "@/components/page-footer";
 
@@ -85,6 +85,7 @@ const methodColors: Record<string, string> = {
 };
 
 export default function DocsPage() {
+  const codeTheme = useCodeTheme();
   return (
     <div className="flex gap-10">
       {/* Sidebar */}
@@ -129,7 +130,7 @@ export default function DocsPage() {
             <SyntaxHighlighter
               language={section.language}
               style={{
-                ...oneDark, 'code[class*="language-"]': {...oneDark['code[class*="language-"]'], background: "transparent", fontFamily: "var(--font-mono)"},
+                ...codeTheme, 'code[class*="language-"]': {...codeTheme['code[class*="language-"]'], background: "transparent", fontFamily: "var(--font-mono)"},
               }}
               customStyle={{ 
                 borderRadius: "0.5rem", 

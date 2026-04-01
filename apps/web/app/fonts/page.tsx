@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { useCodeTheme } from "@/lib/use-code-theme";
 import { PageHeader } from "@/components/ui/page-header";
 import { Panel } from "@/components/ui/panel";
 import { ChevronDown } from "lucide-react";
@@ -116,6 +116,7 @@ export default function FontsPage() {
   const [headingFont, setHeadingFont] = useState(HEADING_FONTS[0]!);
   const [bodyFont, setBodyFont] = useState(BODY_FONTS[0]!);
   const [monoFont, setMonoFont] = useState(MONO_FONTS[0]!);
+  const codeTheme = useCodeTheme();
 
   // Pre-load all Google fonts for dropdown previews
   useEffect(() => {
@@ -256,7 +257,7 @@ export default function FontsPage() {
             <SyntaxHighlighter
               language="python"
               style={{
-                ...oneDark, 'code[class*="language-"]': {...oneDark['code[class*="language-"]'], background: "transparent", fontFamily: monoFont.google ? `"${monoFont.value}", monospace` : "var(--font-geist-mono)"},
+                ...codeTheme, 'code[class*="language-"]': {...codeTheme['code[class*="language-"]'], background: "transparent", fontFamily: monoFont.google ? `"${monoFont.value}", monospace` : "var(--font-geist-mono)"},
               }}
               customStyle={{
                 margin: 0,
