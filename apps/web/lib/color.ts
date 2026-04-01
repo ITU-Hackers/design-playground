@@ -138,6 +138,3 @@ export function textToColors(text: string): Record<string, string> {
 
 export const DEFAULT_COLORS_LIGHT = textToColors(DEFAULT_COLORS_LIGHT_HEX);
 export const DEFAULT_COLORS_DARK = textToColors(DEFAULT_COLORS_DARK_HEX);
-
-/** @deprecated Use DEFAULT_COLORS_LIGHT or DEFAULT_COLORS_DARK */
-export const DEFAULT_COLORS = DEFAULT_COLORS_LIGHT;

@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { useCodeTheme } from "@/lib/use-code-theme";
 import { PageHeader } from "@/components/ui/page-header";
 import { Panel } from "@/components/ui/panel";
 import { ChevronDown } from "lucide-react";
 import { loadGoogleFont } from "@/lib/fonts";
+import { STORAGE_KEYS } from "@/lib/constants";
+import { CodeBlock } from "@/components/ui/code-block";
 
 const HEADING_FONTS = [
   { name: "Geist Sans", value: "var(--font-geist-sans)", google: false },
@@ -39,7 +39,7 @@ const MONO_FONTS = [
   { name: "IBM Plex Mono", value: "IBM Plex Mono", google: true },
 ];
 
-const STORAGE_KEY = "design-playground:fonts";
+const STORAGE_KEY = STORAGE_KEYS.fonts;
 
 
 function fontFamilyStyle(font: { value: string; google: boolean }): string {
@@ -140,8 +140,6 @@ export default function FontsPage() {
     const { mono } = getPersistedFonts();
     return MONO_FONTS.find((f) => f.name === mono) ?? MONO_FONTS[0]!;
   });
-  const codeTheme = useCodeTheme();
-
   // Pre-load all Google fonts for dropdown previews
   useEffect(() => {
     [...HEADING_FONTS, ...BODY_FONTS, ...MONO_FONTS]
@@ -219,27 +217,17 @@ export default function FontsPage() {
             <p className="text-sm text-muted-foreground">The quick brown fox jumps over the lazy dog (small)</p>
           </div>
           <div className="pt-4 pl-6 pb-4">
-            <SyntaxHighlighter
+            <CodeBlock
               language="python"
-              style={{
-                ...codeTheme, 'code[class*="language-"]': {...codeTheme['code[class*="language-"]'], background: "transparent", fontFamily: monoFont.google ? `"${monoFont.value}", monospace` : "var(--font-geist-mono)"},
-              }}
-              customStyle={{
-                margin: 0,
-                padding: 0,
-                fontSize: "0.875rem",
-                fontFamily: monoFont.google ? `"${monoFont.value}", monospace` : "var(--font-geist-mono)",
-                background: "hsl(var(--card))",
-              }}
-            >{
-`import sys
+              fontFamily={monoFont.google ? `"${monoFont.value}", monospace` : "var(--font-geist-mono)"}
+            >{`import sys
 
 def hello_world(print):
     if print != "print":
         sys.exit(1)
     print("Hello, World!")
 
-hello_world("print");`}</SyntaxHighlighter>
+hello_world("print");`}</CodeBlock>
           </div>
         </div>
       </Panel>

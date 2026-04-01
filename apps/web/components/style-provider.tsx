@@ -3,10 +3,11 @@
 import { useEffect } from "react";
 import { DEFAULT_COLORS_LIGHT, DEFAULT_COLORS_DARK } from "@/lib/color";
 import { loadGoogleFont } from "@/lib/fonts";
+import { STORAGE_KEYS } from "@/lib/constants";
 
-const RADIUS_KEY = "style:radius";
-const BG_KEY = "style:bg";
-const FONTS_KEY = "design-playground:fonts";
+const RADIUS_KEY = STORAGE_KEYS.radius;
+const BG_KEY = STORAGE_KEYS.bg;
+const FONTS_KEY = STORAGE_KEYS.fonts;
 
 function applyBg(bg: string) {
   if (!bg) {
@@ -27,7 +28,7 @@ function applyBg(bg: string) {
 export function StyleProvider() {
   useEffect(() => {
     // Apply color theme on mount
-    const storedColors = localStorage.getItem("design-playground:colors");
+    const storedColors = localStorage.getItem(STORAGE_KEYS.colors);
     if (storedColors) {
       try {
         const parsed = JSON.parse(storedColors) as Record<string, string>;

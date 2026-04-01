@@ -105,7 +105,7 @@ export default function PortfolioPage() {
               <ul className="space-y-2">
                 {group.items.map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-primary" />
+                    <span className="h-1 w-1 rounded-full bg-primary font-semibold" />
                     {item}
                   </li>
                 ))}
@@ -116,7 +116,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* Contact */}
-      <section className="rounded-lg bg-accent px-8 py-12 text-accent-foreground">
+      <section className="rounded-lg bg-accent px-8 py-12 text-accent-foreground border-primary/40">
         <div className="mx-auto max-w-xl space-y-4 text-center">
           <h2 className="font-bold tracking-tight">Let's build something together</h2>
           <p className="text-accent-foreground/80">

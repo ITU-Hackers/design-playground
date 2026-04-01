@@ -27,12 +27,10 @@ export function Navbar() {
   const pathname = usePathname();
 
   const centerLink = (href: string, label: string) => (
-    <Button key={href} asChild variant="secondary" size="lg" className="text-lg w-18" data-active={pathname === href}>
+    <Button key={href} asChild variant="secondary" size="lg" className="text-lg">
       <Link href={href}>{label}</Link>
     </Button>
   );
-
-  const isExampleActive = exampleItems.some((item) => pathname === item.href);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90">
@@ -48,7 +46,7 @@ export function Navbar() {
         <nav className="flex items-center justify-end">
           <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="lg" className="text-lg" data-active={isExampleActive}>
+              <Button variant="outline" size="lg" className="text-lg">
                 Examples <ChevronDown className="ml-1 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>

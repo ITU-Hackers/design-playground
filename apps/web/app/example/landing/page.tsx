@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { PageFooter } from "@/components/page-footer";
+import { Panel } from "@/components/ui/panel";
 
 const features = [
   {
@@ -103,13 +105,10 @@ export default function ExamplePage() {
       {/* Stats */}
       <section className="grid grid-cols-2 gap-6 sm:grid-cols-4">
         {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-lg border border-border bg-card text-card-foreground p-6 text-center"
-          >
-            <p className="font-bold tracking-tight">{stat.value}</p>
-            <p className="mt-1 text-sm text-muted-foreground">{stat.label}</p>
-          </div>
+          <Panel key={stat.label} className="text-center">
+            <h3 className="font-bold tracking-tight">{stat.value}</h3>
+            <h4 className="mt-1 text-sm text-muted-foreground">{stat.label}</h4>
+          </Panel>
         ))}
       </section>
 
@@ -125,21 +124,18 @@ export default function ExamplePage() {
         </div>
         <div className="grid gap-6 sm:grid-cols-3">
           {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="rounded-lg border border-border bg-card text-card-foreground p-6"
-            >
-              <h3 className="mb-2 text-lg font-semibold">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground">
+            <Panel key={feature.title}>
+              <h3 className="mb-2 font-semibold">{feature.title}</h3>
+              <p className="text-muted-foreground">
                 {feature.description}
               </p>
-            </div>
+            </Panel>
           ))}
         </div>
       </section>
 
       {/* CTA Banner */}
-      <section className="rounded-lg bg-accent px-8 py-12 text-center text-accent-foreground">
+      <section className="rounded-lg bg-accent px-8 py-12 text-center text-accent-foreground border-primary/40">
         <h2 className="font-bold tracking-tight">
           Ready to get started?
         </h2>
@@ -249,11 +245,7 @@ export default function ExamplePage() {
             Subscribe to our newsletter for the latest updates and insights.
           </p>
           <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="you@example.com"
-              className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            />
+            <Input type="email" placeholder="you@example.com" className="flex-1" />
             <Button>Subscribe</Button>
           </div>
           <p className="text-xs text-muted-foreground">

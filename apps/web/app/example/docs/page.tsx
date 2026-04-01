@@ -1,9 +1,9 @@
 "use client";
 
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { useCodeTheme } from "@/lib/use-code-theme";
+import { CodeBlock } from "@/components/ui/code-block";
 import { Button } from "@/components/ui/button";
 import { PageFooter } from "@/components/page-footer";
+import { Panel } from "@/components/ui/panel";
 
 const sections = [
   {
@@ -85,7 +85,6 @@ const methodColors: Record<string, string> = {
 };
 
 export default function DocsPage() {
-  const codeTheme = useCodeTheme();
   return (
     <div className="flex gap-10">
       {/* Sidebar */}
@@ -109,7 +108,7 @@ export default function DocsPage() {
       {/* Main content */}
       <div className="min-w-0 flex-1 space-y-16">
         {/* Header */}
-        <div className="space-y-4 rounded-lg border border-border bg-card text-card-foreground p-6">
+        <Panel className="space-y-4">
           <p className="font-mono text-sm text-primary">v2.4.1 — stable</p>
           <h1 className="font-bold tracking-tight">ITU-Hackers SDK</h1>
           <p className="text-lg text-muted-foreground">
@@ -120,29 +119,16 @@ export default function DocsPage() {
             <Button>Get Started</Button>
             <Button variant="outline">View on GitHub</Button>
           </div>
-        </div>
+        </Panel>
 
         {/* Sections */}
         {sections.map((section) => (
           <section key={section.id} id={section.id} className="space-y-4">
             <h2 className="font-bold tracking-tight">{section.title}</h2>
             <p className="text-muted-foreground">{section.content}</p>
-            <SyntaxHighlighter
-              language={section.language}
-              style={{
-                ...codeTheme, 'code[class*="language-"]': {...codeTheme['code[class*="language-"]'], background: "transparent", fontFamily: "var(--font-mono)"},
-              }}
-              customStyle={{ 
-                borderRadius: "0.5rem", 
-                margin: 0,
-                fontSize: "0.875rem", 
-                fontFamily: "var(--font-mono)",
-                background: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
-              }}
-            >
+            <CodeBlock language={section.language} bordered>
               {section.code}
-            </SyntaxHighlighter>
+            </CodeBlock>
           </section>
         ))}
 

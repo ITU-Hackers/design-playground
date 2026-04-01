@@ -2,8 +2,10 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Input, Textarea } from "@/components/ui/input";
 import { PageHeader } from "@/components/ui/page-header";
 import { Panel } from "@/components/ui/panel";
+import { STORAGE_KEYS } from "@/lib/constants";
 
 const BG_PRESETS = [
   { label: "None", value: "" },
@@ -37,19 +39,19 @@ export default function StylePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setRadius(parseFloat(localStorage.getItem("style:radius") ?? "0.5"));
-    setBgUrl(localStorage.getItem("style:bg") ?? "");
+    setRadius(parseFloat(localStorage.getItem(STORAGE_KEYS.radius) ?? "0.5"));
+    setBgUrl(localStorage.getItem(STORAGE_KEYS.bg) ?? "");
   }, []);
 
   function updateRadius(value: number) {
     setRadius(value);
-    dispatch("style:radius", String(value));
+    dispatch(STORAGE_KEYS.radius, String(value));
   }
 
   function updateBg(value: string) {
     setBgUrl(value);
     setBgInput("");
-    dispatch("style:bg", value);
+    dispatch(STORAGE_KEYS.bg, value);
   }
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -60,6 +62,7 @@ export default function StylePage() {
       const dataUrl = ev.target?.result as string;
       updateBg(dataUrl);
     };
+    reader.onerror = () => alert("Failed to read file.");
     reader.readAsDataURL(file);
   }
 
@@ -139,12 +142,12 @@ export default function StylePage() {
             >
               Choose file
             </Button>
-            <input
+            <Input
               type="text"
               value={bgInput}
               onChange={(e) => setBgInput(e.target.value)}
               placeholder="or paste an image URL…"
-              className="flex-1 rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex-1"
             />
             <Button
               variant="outline"
@@ -201,16 +204,8 @@ export default function StylePage() {
         <div className="space-y-4">
           <h3 className="text-sm font-medium text-muted-foreground">Inputs</h3>
           <div className="flex max-w-sm flex-col gap-3">
-            <input
-              type="text"
-              placeholder="Text input"
-              className="rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            />
-            <textarea
-              placeholder="Textarea"
-              rows={3}
-              className="rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            />
+            <Input type="text" placeholder="Text input" />
+            <Textarea placeholder="Textarea" rows={3} />
           </div>
         </div>
       </Panel>

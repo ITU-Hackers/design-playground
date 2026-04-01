@@ -27,20 +27,16 @@
 The most impactful ones for a design playground are probably spacing scale, shadow intensity, surface blur, and animation speed — they dramatically change the "feel" of the UI without touching color or type.
 
 ## Tech Debt / Clean-up Opportunities
-High Impact
-1. Duplicate loadGoogleFont function — defined identically in two files:
 
-style-provider.tsx:10-19
-fonts/page.tsx:41-50
-Extract to a shared lib/fonts.ts.
+### Medium Impact
 
-2. Repeated font application useEffect blocks — three nearly identical blocks in fonts/page.tsx:144-185. Could be collapsed into a single applyFont(key, state) helper.
+4. **`fileInputRef` declared but never used** — `colors/page.tsx:24` creates `useRef<HTMLInputElement>(null)` that is never attached to anything. Dead code.
 
-3. Inconsistent CSS property target — most font properties use document.documentElement.style.setProperty(), but --font-geist-mono uses document.body.style.setProperty() in both fonts/page.tsx:177 and style-provider.tsx:101-103. Standardize to documentElement.
+5. **`data-active` attributes in navbar set but never consumed** — `navbar.tsx:30,51` set `data-active={pathname === href}` and `data-active={isExampleActive}`, but no CSS or JS reads these attributes. Either wire them up for active-link styling or remove them.
 
-Medium Impact
-4. Card className duplication — "rounded-lg border border-border bg-card text-card-foreground p-X" repeated across several files (landing/page.tsx, docs/page.tsx, page-footer.tsx). A Panel component already exists but isn't being used in these spots.
+6. **`w-18` in navbar is not a Tailwind class** — `navbar.tsx:30` has `className="text-lg w-18"`. Tailwind's scale jumps from `w-16` (4rem) to `w-20` (5rem); `w-18` generates nothing. Likely should be `w-auto` or removed.
 
-5. Duplicate getComputedStyle calls — getComputedStyle(document.body).getPropertyValue("--font-geist-sans").trim() called identically in two separate effects in fonts/page.tsx:152 and 167.
+7. **`PageFooter` writes the same outer className twice** — both the `"card"` and `"default"` variants in `page-footer.tsx:18,28` open with identical `<footer className="rounded-lg border border-border bg-card text-card-foreground p-6">`. The branching only affects the inner layout. The outer wrapper could be shared.
 
-6. @deprecated export with no removal — DEFAULT_COLORS in color.ts:142-143 is marked deprecated; worth checking if it's still imported anywhere and removing if not.
+8. **FileReader errors silently swallowed** — `colors/page.tsx:71-82` and `style/page.tsx:58-64` attach `reader.onload` but no `reader.onerror`. If the read fails the user gets no feedback.
+

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/page-header";
 import { ColorSwatch } from "@/components/color-swatch";
@@ -11,8 +11,9 @@ import {
   colorsToText,
   textToColors,
 } from "@/lib/color";
+import { STORAGE_KEYS } from "@/lib/constants";
 
-const STORAGE_KEY = "design-playground:colors";
+const STORAGE_KEY = STORAGE_KEYS.colors;
 
 const tokens = COLOR_TOKENS.map((name) => ({
   name,
@@ -21,7 +22,6 @@ const tokens = COLOR_TOKENS.map((name) => ({
 
 export default function ColorsPage() {
   const [colors, setColors] = useState<Record<string, string>>(DEFAULT_COLORS_LIGHT);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -79,6 +79,7 @@ export default function ColorsPage() {
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
     };
+    reader.onerror = () => alert("Failed to read file.");
     reader.readAsText(file);
     // reset so the same file can be re-loaded
     e.target.value = "";
@@ -98,7 +99,6 @@ export default function ColorsPage() {
             <span>Load Theme</span>
           </Button>
           <input
-            ref={fileInputRef}
             type="file"
             accept="*"
             className="sr-only"
