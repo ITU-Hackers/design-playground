@@ -1,3 +1,7 @@
+"use client";
+
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Button } from "@/components/ui/button";
 import { PageFooter } from "@/components/page-footer";
 
@@ -5,6 +9,7 @@ const sections = [
   {
     id: "installation",
     title: "Installation",
+    language: "bash",
     content: "Get started by installing the package via your preferred package manager.",
     code: `# npm
 npm install @ituhackers/sdk
@@ -18,6 +23,7 @@ yarn add @ituhackers/sdk`,
   {
     id: "quick-start",
     title: "Quick Start",
+    language: "typescript",
     content: "Initialize the client with your API key and make your first request.",
     code: `import { ITUHackersClient } from "@ituhackers/sdk";
 
@@ -37,6 +43,7 @@ console.log(result.data);`,
   {
     id: "authentication",
     title: "Authentication",
+    language: "bash",
     content: "All API requests must include a valid API key in the Authorization header.",
     code: `curl -X GET https://api.ITU-Hackers.dev/v1/collections \\
   -H "Authorization: Bearer YOUR_API_KEY" \\
@@ -45,6 +52,7 @@ console.log(result.data);`,
   {
     id: "error-handling",
     title: "Error Handling",
+    language: "typescript",
     content: "The SDK throws typed errors that you can catch and handle gracefully.",
     code: `import { ITUHackersError, RateLimitError } from "@ituhackers/sdk";
 
@@ -118,9 +126,13 @@ export default function DocsPage() {
           <section key={section.id} id={section.id} className="space-y-4">
             <h2 className="font-bold tracking-tight">{section.title}</h2>
             <p className="text-muted-foreground">{section.content}</p>
-            <pre className="overflow-x-auto rounded-lg border border-border bg-muted p-4">
-              <code className="font-mono text-sm">{section.code}</code>
-            </pre>
+            <SyntaxHighlighter
+              language={section.language}
+              style={oneDark}
+              customStyle={{ borderRadius: "0.5rem", fontSize: "0.875rem", margin: 0 }}
+            >
+              {section.code}
+            </SyntaxHighlighter>
           </section>
         ))}
 
