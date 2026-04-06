@@ -43,7 +43,7 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/90">
-      <div className="grid h-14 grid-cols-3 items-center px-2">
+      <div className="grid h-14 grid-cols-3 items-center px-3 my-1">
         <div className="flex items-center">
           <Button asChild variant="default" size="lg" className={`text-lg${pathname === "/" ? " ring-2 ring-primary-foreground" : ""}`}>
             <Link className="text-xl font-bold" href="/">Design Playground</Link>
